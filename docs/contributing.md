@@ -34,4 +34,5 @@ The family is written from our own specifications. That rule protects every repo
 - Comments and documentation hold durable reasons, not progress notes or dates.
 - Behaviour changes are deliberate and tested; moves between repositories change no behaviour.
 - Every architectural choice with a reasonable alternative is recorded in
-  `open-dso-core/model/decisions.yml`.
+  `open-dso-core/model/decisions.yml`; this repository's `model/decisions.yml` holds only
+  decisions about the family model itself.
