@@ -1,0 +1,55 @@
+name: model
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# The family model (model/) composes the published models of open-dso-core and
+# open-sds1000cml. Until those models are published to a registry they resolve
+# from checkouts beside this repository, through the workspace file
+# scripts/workspace.sh writes (named by ENGMOD_WORK); with the replacements
+# active the lock is not compared (composition.lock_check_skipped, a warning).
+#
+# The job validates the model (engdoc exits non-zero on any error; warnings
+# pass) and regenerates docs/generated/, which must match what is committed:
+# scripts/generate.sh is the one way to produce it.
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    env:
+      ENGMODEL_VERSION: v0.10.0 # pin: the engine release the family's models are validated with
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+          cache: false
+      # Three tries: a module proxy lookup that times out is not a model error.
+      - name: Install the engine tools
+        run: |
+          for try in 1 2 3; do
+            go install \
+              "github.com/labeth/engineering-model-go/cmd/engdoc@${ENGMODEL_VERSION}" \
+              "github.com/labeth/engineering-model-go/cmd/engtrace@${ENGMODEL_VERSION}" \
+              "github.com/labeth/engineering-model-go/cmd/engview@${ENGMODEL_VERSION}" && exit 0
+            sleep 15
+          done
+          exit 1
+      - name: Check out the composed repositories beside this one
+        run: scripts/workspace.sh .. | sed 's/^export //' >> "$GITHUB_ENV"
+      - name: Validate the model and regenerate the documentation
+        run: scripts/generate.sh
+      - name: The committed documentation is the generated one
+        run: |
+          if ! git diff --exit-code --stat -- docs/generated || [ -n "$(git status --porcelain -- docs/generated)" ]; then
+            echo "::error::docs/generated/ differs from the model; run scripts/workspace.sh and scripts/generate.sh and commit the result"
+            git status --porcelain -- docs/generated
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: generated-docs
+          path: docs/generated
