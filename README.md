@@ -30,11 +30,12 @@ scope's profile and capabilities), not a branch in core code.
 |---|---|---|---|
 | [open-dso-core](https://github.com/labeth/open-dso-core) | The shared product: engine, HAL, renderer, web, SCPI, analysis, supervisor | used by the SDS1000CML+ and the SDS800X HD | public |
 | [open-sds1000cml](https://github.com/labeth/open-sds1000cml) | Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants) | released (v1.2.x); running on the core on a branch | public |
-| open-sds800xhd | Siglent SDS800X HD | board layer complete, verified in its simulator; no unit yet | private |
+| [open-sds800xhd](https://github.com/labeth/open-sds800xhd) | Siglent SDS800X HD (SDS802X HD to SDS824X HD) | board layer complete; verified in simulation only, no unit yet | public |
 | open-dho1000 | Rigol DHO1000 | specifications | private |
 
-A scope repository stays private until its specifications have passed a provenance review and its
-firmware runs on a real unit.
+A scope repository stays private until it — its tree and its history — has passed a provenance
+review. A scope published before its firmware has run on a real unit is marked verified in
+simulation only.
 
 ## Read next
 
@@ -57,21 +58,21 @@ system of systems. It is a publishable CUE module, `github.com/labeth/open-dso/m
 What it covers:
 
 - **Subsystems.** It composes the published models of the public repositories: `open-dso-core`
-  (dependency `core`, subsystem `SUB-FAM-CORE`) and `open-sds1000cml` (dependency `sds1000cml`,
-  subsystem `SUB-FAM-SDS1000CML`). Their own models hold their requirements, architecture and
+  (dependency `core`, subsystem `SUB-FAM-CORE`), `open-sds1000cml` (dependency `sds1000cml`,
+  subsystem `SUB-FAM-SDS1000CML`) and `open-sds800xhd` (dependency `sds800xhd`, subsystem
+  `SUB-FAM-SDS800XHD`). Their own models hold their requirements, architecture and
   decisions; this model reads only what they publish.
 - **Family requirements** (`REQ-FAM-*` in [`model/requirements.yml`](model/requirements.yml)): one
   product family, one shared core, scope repositories as board-support packages, the same feature
   level on every scope, the same web API, the same look, and no vendor material in any public
   repository, with the publication gate and how a scope joins this model. Each one either links to
   the capabilities the core and the scopes publish ([`model/req-links.yml`](model/req-links.yml):
-  `core::CAP-DSO-*`, `sds1000cml::CAP-SDS-*`) or realizes the family capability
+  `core::CAP-DSO-*`, `sds1000cml::CAP-SDS-*`, `sds800xhd::CAP-HD-*`) or realizes the family capability
   `CAP-FAM-OPEN-FIRMWARE`, and is implemented by the documentation in this repository (its
   `TRLC-LINKS` markers). The requirements are `proposed` and the links `claimed` until the family
   owner reviews them.
-- **Planned subsystems.** The private scopes (SDS800X HD, DHO1000) appear as planned units
-  (`FU-FAM-SDS800XHD`, `FU-FAM-DHO1000`) without a dependency: a public repository's CI cannot
-  fetch a private model.
+- **Planned subsystems.** A private scope (the DHO1000) appears as a planned unit
+  (`FU-FAM-DHO1000`) without a dependency: a public repository's CI cannot fetch a private model.
 - **Decisions.** The family's architecture decisions stay in the core's log (below); `model/decisions.yml`
   holds only decisions about this model itself (its life-cycle tier, proposed).
 
@@ -95,7 +96,8 @@ for t in engdoc engtrace engview; do
   go install github.com/labeth/engineering-model-go/cmd/$t@v0.10.0
 done
 # the composed repositories beside this one (existing checkouts are used as they are;
-# missing ones are cloned: open-dso-core at main, open-sds1000cml at core-split)
+# missing ones are cloned: open-dso-core at main, open-sds1000cml at core-split,
+# open-sds800xhd at main)
 eval "$(scripts/workspace.sh ..)"
 scripts/generate.sh
 ```

@@ -41,7 +41,9 @@ procedure is proven on the unit before anything is installed.
 
 ## 6. Going public
 
-When the specifications have passed a provenance review and the firmware runs on a real unit, the
-repository can become public and joins the [status](status.md) table. Its model then joins the
+When the repository — its whole tree and its history — has passed a provenance review, it can become
+public and joins the [status](status.md) table. The review is the gate; a running unit is not. A
+scope that has not yet run on a real unit is published as verified in simulation only, and says so
+in its README and in the status table until a unit confirms it. Its model then joins the
 family model as a subsystem once it is held to the product tier (see
 [how a scope joins the family model](../README.md#how-a-scope-joins-the-family-model)).

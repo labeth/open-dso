@@ -12,13 +12,15 @@ user interface, a web UI and phone remote, SCPI over VXI-11, A/B over-the-air up
 diagnostics stick. Its move onto `open-dso-core` runs on the `core-split` branch and is verified on
 a bench unit against the release's regression checklist.
 
-## SDS800X HD (`open-sds800xhd`, private)
+## SDS800X HD (`open-sds800xhd`) — verified in simulation only
 
 The board layer implements the whole HAL and passes its simulator parity harness: trigger
 programming for every trigger type, readout (windows, zoom, compression, segments, roll, peak
 detect), the front end and its calibration including self-calibration, display and input, storage,
 the frequency counter, census, installer and A/B slots. It runs the core's engine loop, instrument
-state and SCPI engine. No unit has been on a bench yet; the arrival plan stages first contact.
+state and SCPI engine. No unit has been on a bench yet: everything above is verified in simulation
+only, and the arrival plan stages first contact. Its model is held to the product tier and composed
+by the family model (subsystem `SUB-FAM-SDS800XHD`).
 
 ## DHO1000 (`open-dho1000`, private)
 

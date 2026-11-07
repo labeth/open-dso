@@ -71,7 +71,7 @@ core's model: a scope's requirements trace to its own code, and to the core's ca
 core implements them.
 
 The family model in this repository ([`model/`](../model)) sits above them: it composes the public
-models (the core and the SDS1000CML+) as subsystems and links the family requirements (one product
+models (the core, the SDS1000CML+ and the SDS800X HD) as subsystems and links the family requirements (one product
 family, one shared core, board-support packages, the same feature level, web API and look, and
 provenance) to the capabilities they publish. Its generated documentation is in
 [`generated/`](generated).
