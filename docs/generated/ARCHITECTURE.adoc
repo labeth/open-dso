@@ -13,7 +13,7 @@
 
 == Introduction
 
-The open oscilloscope firmware family as a system of systems: the <<REF_IDX-CATALOG_SYS_CORE,shared core>>, which is the product, and one <<REF_IDX-CATALOG_TERM_BSP,board-support package>> per <<REF_IDX-CATALOG_SYS_SCOPE,scope>>. The <<REF_IDX-ENGMODEL_TERM_MODEL,model>> composes the public models (<<REF_IDX-CATALOG_OPEN_DSO_CORE,open-dso-core>> and the SDS1000CML+) and <<REF_IDX-ENGMODEL_TERM_STATE,states>> the rules every <<REF_IDX-CATALOG_SYS_SCOPE,scope>> keeps: one product family, one <<REF_IDX-CATALOG_SYS_CORE,shared core>>, the same <<REF_IDX-CATALOG_TERM_FEATURE_LEVEL,feature level>>, the same <<REF_IDX-CATALOG_TERM_WEB_API,web API>> and look, and no <<REF_IDX-CATALOG_TERM_VENDOR_MATERIAL,vendor material>> in any public repository.
+The open oscilloscope firmware family as a system of systems: the <<REF_IDX-CATALOG_SYS_CORE,shared core>>, which is the product, and one <<REF_IDX-CATALOG_TERM_BSP,board-support package>> per <<REF_IDX-CATALOG_SYS_SCOPE,scope>>. The <<REF_IDX-ENGMODEL_TERM_MODEL,model>> composes the public models (<<REF_IDX-CATALOG_OPEN_DSO_CORE,open-dso-core>>, the SDS1000CML+ and the SDS800X HD) and <<REF_IDX-ENGMODEL_TERM_STATE,states>> the rules every <<REF_IDX-CATALOG_SYS_SCOPE,scope>> keeps: one product family, one <<REF_IDX-CATALOG_SYS_CORE,shared core>>, the same <<REF_IDX-CATALOG_TERM_FEATURE_LEVEL,feature level>>, the same <<REF_IDX-CATALOG_TERM_WEB_API,web API>> and look, and no <<REF_IDX-CATALOG_TERM_VENDOR_MATERIAL,vendor material>> in any public repository.
 
 === Scope and Assumptions
 
@@ -64,8 +64,8 @@ a[href^="#SEC_VIEW_"] {
 |Architecture Intent View (`VIEW-FAMILY`)
 |unspecified
 |No authored status explanation provided.
-|3
-|3
+|2
+|2
 |0
 |high
 |Defaults authored units to covered; use authoredStatus as the primary publication signal.
@@ -208,8 +208,8 @@ a[href^="#SEC_VIEW_"] {
 |The repository (open-<model>) that holds one scope's board-support package; it starts private.
 |[[REF_CATALOG_SYS_SDS1000CML]]<<REF_IDX-CATALOG_SYS_SDS1000CML,SDS1000CML+ firmware>> (SYS-SDS1000CML)
 |The scope repository for the Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants); modelled by its own model (subsystem SUB-FAM-SDS1000CML).
-|[[REF_CATALOG_FU_FAM_SDS800XHD]]<<REF_IDX-CATALOG_FU_FAM_SDS800XHD,SDS800X HD board-support package>> (FU-FAM-SDS800XHD)
-|Planned subsystem; the private SDS800X HD scope repository.
+|[[REF_CATALOG_SYS_SDS800XHD]]<<REF_IDX-CATALOG_SYS_SDS800XHD,SDS800X HD firmware>> (SYS-SDS800XHD)
+|The scope repository for the Siglent SDS800X HD (SDS802X HD to SDS824X HD, one acquisition board), verified in simulation only; modelled by its own model (subsystem SUB-FAM-SDS800XHD).
 |[[REF_ENGMODEL_TERM_SECURITY_CONTEXT]]<<REF_IDX-ENGMODEL_TERM_SECURITY_CONTEXT,security context>> (TERM-SECURITY-CONTEXT)
 |Security-focused generated context view that groups owned functional units and shows external actors, references, flows, controls, and trust boundaries.
 |[[REF_CATALOG_SYS_CORE]]<<REF_IDX-CATALOG_SYS_CORE,shared core>> (SYS-CORE)
@@ -374,12 +374,10 @@ N_ACT_FAM_OWNER(("Family owner")):::actor
 N_FG_FAM["Family governance"]:::functional_group
 N_FU_FAM_DHO1000["DHO1000 board-support package planned"]:::functional_unit
 N_FU_FAM_GOVERNANCE["Family model and documentation"]:::functional_unit
-N_FU_FAM_SDS800XHD["SDS800X HD board-support package planned"]:::functional_unit
 N_ACT_FAM_CONTRIBUTOR --> N_FU_FAM_GOVERNANCE
 N_ACT_FAM_OWNER --> N_FU_FAM_GOVERNANCE
 N_FG_FAM -->|contains| N_FU_FAM_DHO1000
 N_FG_FAM -->|contains| N_FU_FAM_GOVERNANCE
-N_FG_FAM -->|contains| N_FU_FAM_SDS800XHD
 classDef system_boundary fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;
 classDef functional_group fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#1b5e20;
 classDef functional_unit fill:#e3f2fd,stroke:#0d47a1,stroke-width:1px,color:#0d47a1;
@@ -419,7 +417,6 @@ flowchart TB
     subgraph FGCTX_FG_FAM["Family governance"]
       direction LR
       FU_FU_FAM_GOVERNANCE["Family model and documentation"]:::functional_unit
-      FU_FU_FAM_SDS800XHD["SDS800X HD board-support package (planned)"]:::functional_unit
       FU_FU_FAM_DHO1000["DHO1000 board-support package (planned)"]:::functional_unit
     end
     style FGCTX_FG_FAM fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px;
@@ -465,8 +462,6 @@ flowchart LR
   SYS -->|contains| FG_FG_FAM
   FU_FU_FAM_GOVERNANCE["Family model and documentation"]:::functional_unit
   FG_FG_FAM -->|contains| FU_FU_FAM_GOVERNANCE
-  FU_FU_FAM_SDS800XHD["SDS800X HD board-support package (planned)"]:::functional_unit
-  FG_FG_FAM -->|contains| FU_FU_FAM_SDS800XHD
   FU_FU_FAM_DHO1000["DHO1000 board-support package (planned)"]:::functional_unit
   FG_FG_FAM -->|contains| FU_FU_FAM_DHO1000
 classDef system_boundary fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;
@@ -499,15 +494,13 @@ classDef unknown fill:#ffffff,stroke:#adb5bd,stroke-width:1px,color:#4f5b62;
 What this diagram shows: a table-like matrix where functional groups are the bottom row (columns) and functional units are arranged in rows above their owning group.
 
 ++++
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 120" role="img" aria-label="Complete matrix overview" style="display:block;width:100%;height:auto;max-height:650px;break-inside:avoid;page-break-inside:avoid;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 90" role="img" aria-label="Complete matrix overview" style="display:block;width:100%;height:auto;max-height:650px;break-inside:avoid;page-break-inside:avoid;">
 <rect x="0" y="0" width="180" height="30" fill="#e3f2fd" stroke="#0d47a1"/>
 <text x="90" y="19" text-anchor="middle" font-family="sans-serif" font-size="12" textLength="170" lengthAdjust="spacingAndGlyphs">DHO1000 board-support package (planned)</text>
 <rect x="0" y="30" width="180" height="30" fill="#e3f2fd" stroke="#0d47a1"/>
 <text x="90" y="49" text-anchor="middle" font-family="sans-serif" font-size="12" textLength="170" lengthAdjust="spacingAndGlyphs">Family model and documentation</text>
-<rect x="0" y="60" width="180" height="30" fill="#e3f2fd" stroke="#0d47a1"/>
-<text x="90" y="79" text-anchor="middle" font-family="sans-serif" font-size="12" textLength="170" lengthAdjust="spacingAndGlyphs">SDS800X HD board-support package (planned)</text>
-<rect x="0" y="90" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
-<text x="90" y="109" text-anchor="middle" font-family="sans-serif" font-size="12">Family governance</text>
+<rect x="0" y="60" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
+<text x="90" y="79" text-anchor="middle" font-family="sans-serif" font-size="12">Family governance</text>
 </svg>
 ++++
 
@@ -552,7 +545,7 @@ What this diagram shows: a table-like matrix where functional groups are the bot
 
 
 
-Planned subsystem: the Rigol DHO1000 <<REF_IDX-CATALOG_SYS_SCOPE_REPOSITORY,scope repository>> (open-dho1000), private, at the specification stage. It joins this <<REF_IDX-ENGMODEL_TERM_MODEL,model>> as a composed subsystem when the repository becomes public, as the SDS800X HD does.
+Planned subsystem: the Rigol DHO1000 <<REF_IDX-CATALOG_SYS_SCOPE_REPOSITORY,scope repository>> (open-dho1000), private, at the specification stage. It joins this <<REF_IDX-ENGMODEL_TERM_MODEL,model>> as a composed subsystem when the repository becomes public, as the SDS800X HD did.
 
 [discrete]
 ====== Owned Responsibility
@@ -596,34 +589,6 @@ none
 ====== Linked Requirements
 
 <<REF_IDX-REQ_REQ_FAM_001,REQ-FAM-001>>, <<REF_IDX-REQ_REQ_FAM_002,REQ-FAM-002>>, <<REF_IDX-REQ_REQ_FAM_003,REQ-FAM-003>>, <<REF_IDX-REQ_REQ_FAM_004,REQ-FAM-004>>, <<REF_IDX-REQ_REQ_FAM_005,REQ-FAM-005>>, <<REF_IDX-REQ_REQ_FAM_006,REQ-FAM-006>>, <<REF_IDX-REQ_REQ_FAM_007,REQ-FAM-007>>, <<REF_IDX-REQ_REQ_FAM_009,REQ-FAM-009>>
-
-
-
-
-
-
-===== SDS800X HD board-support package (planned) (FU-FAM-SDS800XHD)
-
-
-
-
-
-Planned subsystem: the Siglent SDS800X HD <<REF_IDX-CATALOG_SYS_SCOPE_REPOSITORY,scope repository>> (open-sds800xhd), private. Its board layer implements the HAL against a simulator; its <<REF_IDX-ENGMODEL_TERM_MODEL,model>> is not yet held to the product tier. It joins this <<REF_IDX-ENGMODEL_TERM_MODEL,model>> as a composed subsystem when the repository becomes public and its <<REF_IDX-ENGMODEL_TERM_MODEL,model>> has reached the product tier the core and the SDS1000CML+ are held to (a product-tier <<REF_IDX-ENGMODEL_TERM_MODEL,model>> composes no dependency below it without an accepted <<REF_IDX-ENGMODEL_TERM_RISK,risk>>). No dependency is declared before then: a public repository's CI cannot fetch a private <<REF_IDX-ENGMODEL_TERM_MODEL,model>>.
-
-[discrete]
-====== Owned Responsibility
-
-functional responsibility for <<REF_IDX-CATALOG_FU_FAM_SDS800XHD,sds800x hd board-support package>> (planned)
-
-[discrete]
-====== Key Collaborators
-
-none
-
-[discrete]
-====== Linked Requirements
-
-<<REF_IDX-REQ_REQ_FAM_008,REQ-FAM-008>>, <<REF_IDX-REQ_REQ_FAM_009,REQ-FAM-009>>
 
 
 
@@ -723,72 +688,59 @@ Coverage summary: 1/1 units have direct <<REF_IDX-ENGMODEL_TERM_EVIDENCE,evidenc
 What this matrix shows: authored requirement-to-unit mappings in a compact square layout (requirements as rows, functional units as columns).
 
 ++++
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Complete matrix overview" style="display:block;width:100%;height:auto;max-height:650px;break-inside:avoid;page-break-inside:avoid;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 300" role="img" aria-label="Complete matrix overview" style="display:block;width:100%;height:auto;max-height:650px;break-inside:avoid;page-break-inside:avoid;">
 <rect x="0" y="0" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="19" text-anchor="middle" font-family="sans-serif" font-size="12">Requirement</text>
 <rect x="180" y="0" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="270" y="19" text-anchor="middle" font-family="sans-serif" font-size="12">FU-FAM-DHO1000</text>
 <rect x="360" y="0" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="450" y="19" text-anchor="middle" font-family="sans-serif" font-size="12">FU-FAM-GOVERNANCE</text>
-<rect x="540" y="0" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
-<text x="630" y="19" text-anchor="middle" font-family="sans-serif" font-size="12">FU-FAM-SDS800XHD</text>
 <rect x="0" y="30" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="49" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-001</text>
 <rect x="180" y="30" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="30" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="49" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="30" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="60" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="79" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-002</text>
 <rect x="180" y="60" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="60" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="79" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="60" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="90" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="109" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-003</text>
 <rect x="180" y="90" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="90" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="109" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="90" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="120" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="139" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-004</text>
 <rect x="180" y="120" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="120" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="139" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="120" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="150" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="169" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-005</text>
 <rect x="180" y="150" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="150" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="169" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="150" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="180" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="199" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-006</text>
 <rect x="180" y="180" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="180" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="199" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="180" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="210" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="229" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-007</text>
 <rect x="180" y="210" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="360" y="210" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="229" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="210" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <rect x="0" y="240" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="259" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-008</text>
 <rect x="180" y="240" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="270" y="259" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
 <rect x="360" y="240" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
-<rect x="540" y="240" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
-<text x="630" y="259" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
 <rect x="0" y="270" width="180" height="30" fill="#e8f5e9" stroke="#1b5e20"/>
 <text x="90" y="289" text-anchor="middle" font-family="sans-serif" font-size="12">REQ-FAM-009</text>
 <rect x="180" y="270" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="270" y="289" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
 <rect x="360" y="270" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
 <text x="450" y="289" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
-<rect x="540" y="270" width="180" height="30" fill="#ffffff" stroke="#cccccc"/>
-<text x="630" y="289" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
 </svg>
 ++++
 
@@ -1151,8 +1103,6 @@ flowchart TB
   REQC_REQ_FAM_008["REQ-FAM-008"]:::requirement
   FU_FU_FAM_DHO1000["DHO1000 board-support package (planned)"]:::functional_unit
   REQC_REQ_FAM_008 -->|applies_to| FU_FU_FAM_DHO1000
-  FU_FU_FAM_SDS800XHD["SDS800X HD board-support package (planned)"]:::functional_unit
-  REQC_REQ_FAM_008 -->|applies_to| FU_FU_FAM_SDS800XHD
 classDef system_boundary fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;
 classDef functional_group fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#1b5e20;
 classDef functional_unit fill:#e3f2fd,stroke:#0d47a1,stroke-width:1px,color:#0d47a1;
@@ -1203,8 +1153,6 @@ flowchart TB
   CODE_REQ_FAM_009_ADDING_A_SCOPE_MD["adding-a-scope.md: 4"]:::code_element
   RTC_FU_FAM_GOVERNANCE_RUNTIME --->|implemented_by| CODE_REQ_FAM_009_ADDING_A_SCOPE_MD
   REQC_REQ_FAM_009 -->|code trace| CODE_REQ_FAM_009_ADDING_A_SCOPE_MD
-  FU_FU_FAM_SDS800XHD["SDS800X HD board-support package (planned)"]:::functional_unit
-  REQC_REQ_FAM_009 -->|applies_to| FU_FU_FAM_SDS800XHD
 classDef system_boundary fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;
 classDef functional_group fill:#e8f5e9,stroke:#1b5e20,stroke-width:1px,color:#1b5e20;
 classDef functional_unit fill:#e3f2fd,stroke:#0d47a1,stroke-width:1px,color:#0d47a1;
@@ -1253,7 +1201,7 @@ This chapter renders the model as OpenSSF Gemara (https://gemara.openssf.org) do
 |0
 |L2
 |Capability Catalog
-|4
+|3
 |L2
 |Control Catalog
 |0
@@ -1285,6 +1233,9 @@ This chapter shows the system architecture across hardware and software: hardwar
 |SUB-FAM-SDS1000CML
 |SDS1000CML+ firmware
 |`sds1000cml::public`
+|SUB-FAM-SDS800XHD
+|SDS800X HD firmware
+|`sds800xhd::public`
 |===
 
 === Selected Dependency Publications
@@ -1302,6 +1253,11 @@ This chapter shows the system architecture across hardware and software: hardwar
 |`github.com/labeth/open-sds1000cml/model@v0`
 |`v0.2.0`
 |`sds1000cml`
+|`sds800xhd`
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0`
+|`v0.1.0`
+|`sds800xhd`
 |===
 
 ==== Published Architecture
@@ -1477,6 +1433,10 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Measurements
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::FU-DSO-PANEL`
+|UI model controller
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-PROFILE`
 |Scope profile
 |`public`
@@ -1489,12 +1449,20 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Published frame
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::FU-DSO-SCOPEAPP`
+|Scope application
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-SCOPEWEB`
 |Web scope
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-SCPI`
 |SCPI engine
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::FU-DSO-SETTINGS`
+|Setup shape
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-SOUND`
@@ -2097,6 +2065,38 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Watchdog keepalive
 |`public`
 |`github.com/labeth/open-sds1000cml/model@v0@v0.2.0`
+|`sds800xhd::CAP-HD-ACQUISITION`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-CENSUS`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-DISPLAY-PANEL`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-PLATFORM`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-REMOTE`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-SETTINGS`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-SIMULATION`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::CAP-HD-SUPERVISION`
+|capability
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
 |===
 
 ==== Published Requirements
@@ -2264,8 +2264,20 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Agent runtime configuration
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-089`
+|Settings snapshot persistence
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-095`
+|Calibrated offset conversion
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-096`
 |Software display coupling
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-098`
+|Trigger calibration selection
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-099`
@@ -2392,12 +2404,28 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Engine diagnostics and tuning
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-135`
+|Panel event dispatch and indicators
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-136`
+|Panel menus and shared display state
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-137`
+|Panel autoset sweep
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-138`
 |Panel reference snapshots
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-139`
 |Panel mask acquisition workflow
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-140`
+|Panel super-resolution workflow
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-141`
@@ -2426,6 +2454,10 @@ This chapter shows the system architecture across hardware and software: hardwar
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-168`
 |Device display and screenshot composition
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-174`
+|Application version label
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-175`
@@ -2534,6 +2566,14 @@ This chapter shows the system architecture across hardware and software: hardwar
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-223`
 |AUTO in BUS frames the bus for reading
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-224`
+|AUTO frames the signal for the workspace's task
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-225`
+|AUTO leaves no trace clipped
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-226`
@@ -2708,6 +2748,10 @@ This chapter shows the system architecture across hardware and software: hardwar
 |SOUND takes on STOP and on the FPGA's trigger
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-276`
+|SOUND's drift log ends with SOUND
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-277`
 |The scope's keys take the acquisition back from a SOUND page
 |`public`
@@ -2762,6 +2806,18 @@ This chapter shows the system architecture across hardware and software: hardwar
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::REQ-DSO-292`
 |Diagnostics DONE screen
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-293`
+|Debounced settings saving
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-294`
+|Capture health
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-295`
+|One application composition
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`sds1000cml::REQ-SDS-001`
@@ -3460,6 +3516,70 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Diagnostics DONE screen
 |`public`
 |`github.com/labeth/open-sds1000cml/model@v0@v0.2.0`
+|`sds800xhd::REQ-HD-001`
+|Launch and takeover
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-002`
+|Disable at power-on
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-003`
+|Register access
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-004`
+|Start-up order
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-005`
+|Record readout
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-006`
+|Board interface
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-007`
+|Waveform layer
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-008`
+|Front panel
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-009`
+|Remote programming
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-010`
+|Measurements
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-011`
+|Instrument state
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-012`
+|Supervised update
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-013`
+|Read-only census
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-014`
+|Simulator parity
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-015`
+|Open PL design
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
+|`sds800xhd::REQ-HD-016`
+|Never brick
+|`public`
+|`github.com/labeth/open-sds800xhd/model@v0@v0.1.0`
 |===
 
 ==== Published Views
@@ -3523,15 +3643,24 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 ** link LNK-FAM-002-CORE-BOARD-SUPPORT (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-BOARD-SUPPORT`: Run on any scope whose board-support package implements the board interface, described by its profile, with every feature the board lacks refused rather than faked.
 *** `core::REQ-DSO-1001` (status not available): The instrument shall reach its board's acquisition, front end, display, panel and supervisor hardware only through the board interface the board-support package implements, which refuses a feature the board lacks.
 *** `core::REQ-DSO-1002` (status not available): The instrument shall read its scope's profile into the board description, choosing the variant by the unit identity.
+*** `core::REQ-DSO-295` (status not available): The instrument shall run every scope's application as its board handed to one core composition, the scope's own parts entering as named options, with no hidden modes.
 * *REQ-FAM-003*: The scope repository shall hold only the board-support package of its scope.
 ** link LNK-FAM-003-CORE-BOARD-SUPPORT (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-BOARD-SUPPORT`: Run on any scope whose board-support package implements the board interface, described by its profile, with every feature the board lacks refused rather than faked.
 *** `core::REQ-DSO-1001` (status not available): The instrument shall reach its board's acquisition, front end, display, panel and supervisor hardware only through the board interface the board-support package implements, which refuses a feature the board lacks.
 *** `core::REQ-DSO-1002` (status not available): The instrument shall read its scope's profile into the board description, choosing the variant by the unit identity.
+*** `core::REQ-DSO-295` (status not available): The instrument shall run every scope's application as its board handed to one core composition, the scope's own parts entering as named options, with no hidden modes.
 ** link LNK-FAM-003-SDS1000CML-FPGA-IMAGES (unchanged, *CLAIMED*: not yet reviewed) to `sds1000cml::CAP-SDS-FPGA-IMAGES`: Ship FPGA images built reproducibly that meet timing, and configure the fabric only with a valid image whose identity is checked before acquisition starts.
 *** `sds1000cml::REQ-SDS-004` (status not available): The instrument shall verify the loaded image identity before starting its acquisition engine.
 *** `sds1000cml::REQ-SDS-005` (status not available): The instrument shall configure the Cyclone through CS3 selector 7 during controlled bring-up.
 *** `sds1000cml::REQ-SDS-092` (status not available): The instrument shall validate passive-serial container length and bit order before configuration writes unless the corresponding explicit override is selected.
 *** `sds1000cml::REQ-SDS-210` (status not available): The instrument shall provide an FPGA image build that publishes a bitstream only from a fresh project at the image's recorded seed whose clocks all meet timing.
+** link LNK-FAM-003-SDS800XHD-PLATFORM (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-PLATFORM`: Run the open firmware on the unit beside the vendor firmware: take the hardware over from the vendor application and return to it when uninstalled or disabled at power-on.
+*** `sds800xhd::REQ-HD-001` (status not available): The instrument shall start its app from the launch hook on p12, take the hardware over from the vendor application and write no eMMC partition other than p12.
+*** `sds800xhd::REQ-HD-002` (status not available): When the disable key is held at power-on, the instrument shall leave the vendor application running unchanged.
+*** `sds800xhd::REQ-HD-006` (status not available): The instrument shall implement the core's board interface over its hardware packages and refuse each feature the board lacks.
+*** `sds800xhd::REQ-HD-016` (status not available): The instrument shall confine its writes to p12's root outside p12's updatefile and usr/upgrade directories, never writing the boot, kernel, vendor system or factory-data partitions, a U-Boot environment, a raw eMMC block device, the eFuses or the BBRAM, nor loading an open PL image whose board facts are not all verified.
+** link LNK-FAM-003-SDS800XHD-SIMULATION (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-SIMULATION`: Verify the firmware in the tier-1 simulator against the vendor firmware's run.
+*** `sds800xhd::REQ-HD-014` (status not available): The instrument shall pass the simulator parity harness for every board interface area against the vendor start-up registers.
 * *REQ-FAM-004*: The scope shall provide each core capability its hardware supports.
 ** link LNK-FAM-004-SDS1000CML-ACQUISITION (unchanged, *CLAIMED*: not yet reviewed) to `sds1000cml::CAP-SDS-ACQUISITION`: Acquire both channels through the acquisition FPGA at the requested timebase and acquisition mode, as a live stream or a finite pre- and post-trigger record held for recall, with every published frame carrying the metadata needed to interpret it and every lost or stale sample reported rather than hidden.
 *** `sds1000cml::REQ-SDS-002` (status not available): The instrument shall reuse boot GPMC and key descriptors without freshly opening or closing them.
@@ -3695,6 +3824,16 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 *** `sds1000cml::REQ-SDS-290` (status not available): The instrument shall, from the diagnostics stick's takeover stage with the probe image running, judge for each channel whether its gain DAC, range relay, AC coupling, GND relay bit, 20 MHz bandwidth limit and offset DAC act on its converters, and which FPGA ball its trigger comparator drives, using the 1 kHz probe compensation square on the probes.
 *** `sds1000cml::REQ-SDS-291` (status not available): The instrument shall, from the diagnostics stick's takeover stage, judge whether the SRAM stores every word through its address counter, whether the front panel's key chain answers and its key interrupt reaches the processor, which FPGA balls the processor's gpio113 and eHRPWM outputs reach, and which of the SDS1102CML+'s processor devices are missing or extra, and light the panel LEDs one by one.
 *** `sds1000cml::REQ-SDS-292` (status not available): The instrument shall, when the diagnostics stick has finished, flush the stick and show DONE, or FAILED with the reason, on its screen.
+** link LNK-FAM-004-SDS800XHD-ACQUISITION (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-ACQUISITION`: Bring the front end, converters and timebase up in the start-up order of the specifications, acquire with the trigger and read records out in volts for the core.
+*** `sds800xhd::REQ-HD-003` (status not available): The instrument shall access each programmable-logic register plane under one lock with shadows of its write-only registers.
+*** `sds800xhd::REQ-HD-004` (status not available): The instrument shall bring up the offset DACs, VGAs, ADCs, calibration, timebase banks and trigger defaults in the start-up order of spec 03 before the first arm.
+*** `sds800xhd::REQ-HD-005` (status not available): The instrument shall read a record out one channel and one window at a time through the AXI DMA into the coherent buffer as 16-bit codes with their scale.
+*** `sds800xhd::REQ-HD-010` (status not available): The instrument shall measure each read-out frame with the core's automatic measurements.
+*** `sds800xhd::REQ-HD-015` (status not available): The instrument shall, on its open PL image, present the register ABI of spec 20 with the identity block first and the compat planes the board and the unit's drivers use, decide every trigger in the PL and never write a stream block in part.
+** link LNK-FAM-004-SDS800XHD-SETTINGS (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-SETTINGS`: Keep the instrument state across power cycles and know the unit's model and options.
+*** `sds800xhd::REQ-HD-011` (status not available): The instrument shall keep its instrument state on p12, written with fsync, and recall it at power-on.
+** link LNK-FAM-004-SDS800XHD-SUPERVISION (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-SUPERVISION`: Run and update the app under the core's supervisor with A/B slots and rollback.
+*** `sds800xhd::REQ-HD-012` (status not available): The instrument shall run its app from A/B slots on p12 under the core's supervisor and roll back an app whose health token stops.
 * *REQ-FAM-005*: The scope shall serve the core's web API.
 ** link LNK-FAM-005-CORE-WEB-UI (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-WEB-UI`: Operate and observe the instrument from a web browser and a phone on the network, with the same workspaces and settings as the front panel, and export calibrated waveforms.
 *** `core::REQ-DSO-023` (status not available): The instrument shall serve settings and binary frame data through the web endpoint and decode binary frame payloads for browser consumers.
@@ -3720,9 +3859,13 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 *** `sds1000cml::REQ-SDS-220` (status not available): The instrument shall serve a phone remote page that changes every setting through the sheet model without opening a sheet on the LCD, shows only control state, keeps a change history with undo, and keeps the phone awake where the browser allows.
 ** link LNK-FAM-005-SDS1000CML-REMOTE-PROGRAMMING (unchanged, *CLAIMED*: not yet reviewed) to `sds1000cml::CAP-SDS-REMOTE-PROGRAMMING`: Control the instrument and transfer waveforms from a host program with SCPI commands over VXI-11.
 *** `sds1000cml::REQ-SDS-024` (status not available): The instrument shall serve implemented SCPI commands and waveform transfers through VXI-11.
+** link LNK-FAM-005-SDS800XHD-REMOTE (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-REMOTE`: Program the instrument remotely in this scope's SCPI dialect.
+*** `sds800xhd::REQ-HD-009` (status not available): The instrument shall serve its SCPI dialect over VXI-11, the raw socket on port 5025 and telnet on port 5024 through the core's SCPI engine.
 * *REQ-FAM-006*: The scope shall draw its user interface with the core's design system.
 ** link LNK-FAM-006-CORE-FRONT-PANEL (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-FRONT-PANEL`: Operate the instrument from its own front panel and LCD: task workspaces, settings sheets, knob tools, indicators, the screen saver and screen images.
 *** `core::REQ-DSO-021` (status not available): The instrument shall render instrument data with bitmap text and scaled readout labels on an 800 by 480 RGB565 little-endian surface, export screen images, and present complete back buffers through the Linux framebuffer interface.
+*** `core::REQ-DSO-135` (status not available): The instrument shall translate matrix edges and queued named actions into instrument commands, resynchronize knob state from authoritative snapshots and expose running, channel and mode indicators.
+*** `core::REQ-DSO-136` (status not available): The instrument shall expose softkey menus, bounded control ladders, cursor and decode settings, and shared display state for rendering and setup restoration.
 *** `core::REQ-DSO-168` (status not available): The instrument shall assemble display state from acquisition and UI owners and render panel and screenshot surfaces from that state.
 *** `core::REQ-DSO-211` (status not available): The instrument shall switch between the SCOPE, BUS, SPECTRUM, MEASURE and COMPARE workspaces with F1-F5 while no settings sheet is open, show them as a pictogram rail at most 30 px wide at the right edge of the LCD with the active one highlighted, and show the active workspace's next view when its key is pressed again.
 *** `core::REQ-DSO-212` (status not available): The instrument shall open a full-screen settings sheet on Menu On/Off or a menu key, with tabs that cover every setting and each row's options written out, pick the highlighted row's option with F1-F5, change tab with S/DIV, move rows with Adjust, close the sheet on the key of the open tab, and run actions only from labelled F-keys.
@@ -3749,6 +3892,9 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 *** `sds1000cml::REQ-SDS-212` (status not available): The instrument shall open a full-screen settings sheet on Menu On/Off or a menu key, with tabs that cover every setting and each row's options written out, pick the highlighted row's option with F1-F5, change tab with S/DIV, move rows with Adjust, close the sheet on the key of the open tab, and run actions only from labelled F-keys.
 *** `sds1000cml::REQ-SDS-213` (status not available): The instrument shall give Adjust and its push one job named on a tool line in each workspace, move the trigger position with Horizontal Position in every workspace until its push switches it to the workspace's second job named on the tool line (a second push, a workspace or view change or an opened sheet returning it to the trigger position, and the push centring the trigger where there is no second job), and keep the printed jobs of V/DIV, vertical Position, Level, S/DIV and their pushes (Variable, Zero, Zoom), with V/DIV and S/DIV turning the way their printed arcs show.
 *** `sds1000cml::REQ-SDS-221` (status not available): The instrument shall show only a small live scope drifting over a black LCD after no input has reached the panel for the Screen saver time, draw the LCD black and switch its backlight off after none has for the Screen off time, and let a key or knob on the scope that wakes the screen do nothing else.
+** link LNK-FAM-006-SDS800XHD-DISPLAY-PANEL (unchanged, *CLAIMED*: not yet reviewed) to `sds800xhd::CAP-HD-DISPLAY-PANEL`: Show the core's user interface over the PL-drawn waveform layer and operate the instrument from its front panel.
+*** `sds800xhd::REQ-HD-007` (status not available): The instrument shall configure the map engine to draw the waveforms and draw only the user interface into the framebuffer.
+*** `sds800xhd::REQ-HD-008` (status not available): The instrument shall read the key matrix, the encoders and the touch panel and drive the key LEDs and the beeper.
 * *REQ-FAM-007*: The open-dso family shall keep vendor material out of every public repository.
 ** no requirement link
 * *REQ-FAM-008*: While the scope repository is unreviewed, the scope repository shall stay private.
@@ -4091,19 +4237,6 @@ The open-dso repository; the family README, documentation and system model, hold
 |Name |family model and documentation
 |Mentioned In |<<SEC_VIEW_VIEW-FAMILY,Architecture Intent View>>, <<SEC_VIEW_VIEW-FAMILY-TRACEABILITY,Traceability View>>
 |===
-[[REF_IDX-CATALOG_FU_FAM_SDS800XHD]]
-[discrete]
-==== FU-FAM-SDS800XHD
-
-Planned subsystem; the private SDS800X HD scope repository.
-
-[cols="1,4",options="header"]
-|===
-|Key |Value
-|Kind |Catalog Functional Unit
-|Name |SDS800X HD board-support package
-|Mentioned In |<<SEC_VIEW_VIEW-FAMILY,Architecture Intent View>>
-|===
 [[REF_IDX-CATALOG_STATE_FAM_SCOPE_UNREVIEWED]]
 [discrete]
 ==== STATE-FAM-SCOPE-UNREVIEWED
@@ -4180,6 +4313,19 @@ The scope repository for the Siglent SDS1000CML+ (SDS1102CML+ and its same-board
 |Key |Value
 |Kind |Catalog System
 |Name |SDS1000CML+ firmware
+|Mentioned In |n/a
+|===
+[[REF_IDX-CATALOG_SYS_SDS800XHD]]
+[discrete]
+==== SYS-SDS800XHD
+
+The scope repository for the Siglent SDS800X HD (SDS802X HD to SDS824X HD, one acquisition board), verified in simulation only; modelled by its own model (subsystem SUB-FAM-SDS800XHD).
+
+[cols="1,4",options="header"]
+|===
+|Key |Value
+|Kind |Catalog System
+|Name |SDS800X HD firmware
 |Mentioned In |n/a
 |===
 [[REF_IDX-ENGMODEL_TERM_ACTOR]]
@@ -4778,7 +4924,7 @@ Authored risk record with likelihood, impact, response, scope, controls, and evi
 |Key |Value
 |Kind |Engineering Model Term
 |Name |risk
-|Mentioned In |<<SEC_VIEW_VIEW-FAMILY,Architecture Intent View>>
+|Mentioned In |n/a
 |===
 [[REF_IDX-ENGMODEL_TERM_RUNTIME_ELEMENT]]
 [discrete]
