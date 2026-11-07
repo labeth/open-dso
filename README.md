@@ -24,6 +24,17 @@ specifications, its profile, its installer and the device model its simulator ru
 A feature written once in the core reaches every scope. A difference between scopes is data (the
 scope's profile and capabilities), not a branch in core code.
 
+## Try it in your browser
+
+The firmware runs in a browser tab against a simulated board with a signal generator on its
+inputs: the scope's front panel and screen, and its own web UI, as on the instrument.
+
+- [SDS1000CML+ demo](https://labeth.github.io/open-sds1000cml/)
+- [SDS800X HD demo](https://labeth.github.io/open-sds800xhd/)
+
+The simulation is the product's, not the hardware's: what the simulated board lacks (averaging,
+roll, protocol and zone triggers, streams) is refused with its reason, as on a scope without it.
+
 ## Repositories
 
 | Repository | What it is | Stage | Visibility |
