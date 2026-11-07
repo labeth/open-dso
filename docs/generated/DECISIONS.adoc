@@ -1,0 +1,25 @@
+= Architecture Decision Records
+:toc:
+:toclevels: 2
+:sectnums:
+
+[[DEC-TIER-PRODUCT]]
+== DEC-TIER-PRODUCT: The family model is held to the product life-cycle tier
+
+Status:: proposed
+Date:: 2026-11-07
+
+=== Context
+
+The family model composes the core and the SDS1000CML+, both held to the product tier. Its own requirements and requirement links are proposed and claimed until the family owner reviews them, so the model declares no life-cycle tier yet and is checked with the engine's untiered severities.
+
+=== Decision
+
+Once the family owner approves the family requirements and accepts their requirement links, engmod.yml declares the product tier with this decision as its tier decision.
+Tier: Product
+Bundles: Foundation
+
+=== Consequences
+
+- A scope model composed by the family must be at the product tier or carry an accepted below-tier risk; the SDS800X HD and the DHO1000 join when they are public and their models reach the product tier.
+- The family's architecture decisions stay in the core's decision log (open-dso-core/model/decisions.yml); this log holds only decisions about the family model itself.

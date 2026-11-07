@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="VIEW-FAMILY-title" viewBox="0 0 1222 744" data-source="engmod.yml" data-view="VIEW-FAMILY">
+<title id="VIEW-FAMILY-title">VIEW-FAMILY — architecture-intent view</title>
+<metadata>source=engmod.yml; view=VIEW-FAMILY; kind=architecture-intent</metadata>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#455a64"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="36" y="30" font-family="monospace" font-size="18" font-weight="bold">VIEW-FAMILY</text>
+<text x="556" y="78" font-family="monospace" font-size="14" font-weight="bold">Relationships · numbered arrows point to the destination</text>
+<path data-edge="" d="M376 118 H436 V512 H376" fill="none" stroke="#78909c" marker-end="url(#arrow)"/>
+<rect x="384" y="106" width="34" height="16" rx="3" fill="white"/><text x="387" y="118" font-family="monospace" font-size="11">1</text>
+<text x="556" y="100" font-family="monospace" font-size="12" font-weight="normal">1.</text>
+<text x="556" y="118" font-family="monospace" font-size="12" font-weight="normal">ACT-FAM-CONTRIBUTOR → FU-FAM-GOVERNANCE</text>
+<text x="556" y="136" font-family="monospace" font-size="12" font-weight="normal">interacts_with</text>
+<path data-edge="" d="M376 208 H454 V530 H376" fill="none" stroke="#78909c" marker-end="url(#arrow)"/>
+<rect x="384" y="196" width="34" height="16" rx="3" fill="white"/><text x="387" y="208" font-family="monospace" font-size="11">2</text>
+<text x="556" y="166" font-family="monospace" font-size="12" font-weight="normal">2.</text>
+<text x="556" y="184" font-family="monospace" font-size="12" font-weight="normal">ACT-FAM-OWNER → FU-FAM-GOVERNANCE</text>
+<text x="556" y="202" font-family="monospace" font-size="12" font-weight="normal">interacts_with</text>
+<path data-edge="" d="M376 298 H472 V404 H376" fill="none" stroke="#78909c" marker-end="url(#arrow)"/>
+<rect x="384" y="286" width="34" height="16" rx="3" fill="white"/><text x="387" y="298" font-family="monospace" font-size="11">3</text>
+<text x="556" y="232" font-family="monospace" font-size="12" font-weight="normal">3.</text>
+<text x="556" y="250" font-family="monospace" font-size="12" font-weight="normal">FG-FAM → FU-FAM-DHO1000</text>
+<text x="556" y="268" font-family="monospace" font-size="12" font-weight="normal">contains</text>
+<path data-edge="" d="M376 316 H490 V548 H376" fill="none" stroke="#78909c" marker-end="url(#arrow)"/>
+<rect x="384" y="304" width="34" height="16" rx="3" fill="white"/><text x="387" y="316" font-family="monospace" font-size="11">4</text>
+<text x="556" y="298" font-family="monospace" font-size="12" font-weight="normal">4.</text>
+<text x="556" y="316" font-family="monospace" font-size="12" font-weight="normal">FG-FAM → FU-FAM-GOVERNANCE</text>
+<text x="556" y="334" font-family="monospace" font-size="12" font-weight="normal">contains</text>
+<path data-edge="" d="M376 334 H508 V618 H376" fill="none" stroke="#78909c" marker-end="url(#arrow)"/>
+<rect x="384" y="322" width="34" height="16" rx="3" fill="white"/><text x="387" y="334" font-family="monospace" font-size="11">5</text>
+<text x="556" y="364" font-family="monospace" font-size="12" font-weight="normal">5.</text>
+<text x="556" y="382" font-family="monospace" font-size="12" font-weight="normal">FG-FAM → FU-FAM-SDS800XHD</text>
+<text x="556" y="400" font-family="monospace" font-size="12" font-weight="normal">contains</text>
+<g id="ACT-FAM-CONTRIBUTOR"><rect x="36" y="100" width="340" height="66" rx="10" fill="#fff8e1" stroke="#ef6c00" stroke-width="2"/>
+<text x="50" y="124" font-family="monospace" font-size="13" font-weight="bold">Contributor</text>
+<text x="50" y="142" font-family="monospace" font-size="11" font-weight="normal">ACT-FAM-CONTRIBUTOR</text>
+</g>
+<g id="ACT-FAM-OWNER"><rect x="36" y="190" width="340" height="66" rx="10" fill="#fff8e1" stroke="#ef6c00" stroke-width="2"/>
+<text x="50" y="214" font-family="monospace" font-size="13" font-weight="bold">Family owner</text>
+<text x="50" y="232" font-family="monospace" font-size="11" font-weight="normal">ACT-FAM-OWNER</text>
+</g>
+<g id="FG-FAM"><rect x="36" y="280" width="340" height="82" rx="10" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+<text x="50" y="304" font-family="monospace" font-size="13" font-weight="bold">Family governance</text>
+<text x="50" y="322" font-family="monospace" font-size="11" font-weight="normal">FG-FAM</text>
+</g>
+<g id="FU-FAM-DHO1000"><rect x="36" y="386" width="340" height="84" rx="10" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+<text x="50" y="410" font-family="monospace" font-size="13" font-weight="bold">DHO1000 board-support package</text>
+<text x="50" y="428" font-family="monospace" font-size="13" font-weight="bold">(planned)</text>
+<text x="50" y="446" font-family="monospace" font-size="11" font-weight="normal">FU-FAM-DHO1000</text>
+</g>
+<g id="FU-FAM-GOVERNANCE"><rect x="36" y="494" width="340" height="82" rx="10" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+<text x="50" y="518" font-family="monospace" font-size="13" font-weight="bold">Family model and documentation</text>
+<text x="50" y="536" font-family="monospace" font-size="11" font-weight="normal">FU-FAM-GOVERNANCE</text>
+</g>
+<g id="FU-FAM-SDS800XHD"><rect x="36" y="600" width="340" height="84" rx="10" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+<text x="50" y="624" font-family="monospace" font-size="13" font-weight="bold">SDS800X HD board-support package</text>
+<text x="50" y="642" font-family="monospace" font-size="13" font-weight="bold">(planned)</text>
+<text x="50" y="660" font-family="monospace" font-size="11" font-weight="normal">FU-FAM-SDS800XHD</text>
+</g>
+</svg>
