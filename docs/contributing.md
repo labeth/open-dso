@@ -1,5 +1,8 @@
 # Contributing
 
+<!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
+<!-- TRLC-LINKS: REQ-FAM-002, REQ-FAM-003, REQ-FAM-007 -->
+
 ## Provenance
 
 The family is written from our own specifications. That rule protects every repository:

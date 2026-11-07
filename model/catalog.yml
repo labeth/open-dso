@@ -1,0 +1,86 @@
+schemaVersion: 2
+catalog:
+  systems:
+  - id: SYS-FAMILY
+    name: open-dso family
+    definition: Open firmware for digital storage oscilloscopes as one product family, built from one shared core
+      and one board-support package per scope.
+    aliases:
+    - the family
+  - id: SYS-CORE
+    name: shared core
+    definition: open-dso-core, the hardware-independent product every scope composes; modelled by the core's own
+      model (subsystem SUB-FAM-CORE).
+    aliases:
+    - open-dso-core
+  - id: SYS-SCOPE
+    name: scope
+    definition: One instrument the family supports, running the shared core over its board-support package; a model
+      that is the same board with parts left off is a variant of an existing scope, described by its profile.
+  - id: SYS-SCOPE-REPOSITORY
+    name: scope repository
+    definition: The repository (open-<model>) that holds one scope's board-support package; it starts private.
+  - id: SYS-SDS1000CML
+    name: SDS1000CML+ firmware
+    definition: The scope repository for the Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants); modelled
+      by its own model (subsystem SUB-FAM-SDS1000CML).
+  functionalGroups:
+  - id: FG-FAM
+    name: family governance
+    definition: The family's front door, its system model and the rules every repository of the family keeps.
+  functionalUnits:
+  - id: FU-FAM-GOVERNANCE
+    name: family model and documentation
+    definition: The open-dso repository; the family README, documentation and system model, holding no code.
+  - id: FU-FAM-SDS800XHD
+    name: SDS800X HD board-support package
+    definition: Planned subsystem; the private SDS800X HD scope repository.
+  - id: FU-FAM-DHO1000
+    name: DHO1000 board-support package
+    definition: Planned subsystem; the private DHO1000 scope repository.
+  actors:
+  - id: ACT-FAM-OWNER
+    name: family owner
+    definition: Maintains the family, approves its requirements and decisions, reviews requirement links and decides
+      when a scope repository becomes public.
+  - id: ACT-FAM-CONTRIBUTOR
+    name: contributor
+    definition: Proposes a change to a repository of the family, written from the family's own specifications.
+  events:
+  - id: EVT-FAM-SCOPE-PUBLIC
+    name: a scope repository becomes public
+    definition: The family owner makes a private scope repository public, after its provenance review has passed
+      and its firmware has run on a real unit.
+  states:
+  - id: STATE-FAM-SCOPE-UNREVIEWED
+    name: the scope repository is unreviewed
+    definition: A scope repository whose specifications have not yet passed a provenance review, or whose firmware
+      has not yet run on a real unit.
+  dataTerms:
+  - id: TERM-BSP
+    name: board-support package
+    definition: What a scope repository holds; the board interface (HAL) implementation for its board, its specifications,
+      profile, FPGA images, installer and the device model its simulator runs.
+  - id: TERM-FEATURE-LEVEL
+    name: feature level
+    definition: The set of core capabilities a scope provides; a capability the board cannot serve is reported as
+      absent with the reason, never faked.
+  - id: TERM-VENDOR-MATERIAL
+    name: vendor material
+    definition: Vendor code, strings, symbol or accessor names, data taken from vendor files, and anything reconstructed
+      from a vendor netlist, bitstream or decompiled code; the public instrument interface a host must see verbatim
+      is the one reviewed exception.
+  - id: TERM-PROVENANCE-REVIEW
+    name: provenance review
+    definition: The owner's review that a repository's specifications and code are written in the family's own words
+      from its own specifications and hold no vendor material.
+  - id: TERM-WEB-API
+    name: web API
+    definition: The HTTP endpoints, the capability description and the binary frame format the core's web server
+      serves to the core's web client.
+  - id: TERM-DESIGN-SYSTEM
+    name: design system
+    definition: The core's shared look; colours, type, layout and controls of the display and the web client.
+  - id: TERM-FAMILY-MODEL
+    name: family model
+    definition: This engineering model; it composes the published model of every public repository of the family.

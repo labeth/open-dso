@@ -1,5 +1,8 @@
 # Architecture
 
+<!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
+<!-- TRLC-LINKS: REQ-FAM-002, REQ-FAM-003, REQ-FAM-005, REQ-FAM-006 -->
+
 ## Layers
 
 | Layer | Lives in | Holds |

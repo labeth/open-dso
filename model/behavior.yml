@@ -1,0 +1,18 @@
+schemaVersion: 2
+behavior:
+  relationships:
+  - type: contains
+    from: FG-FAM
+    to: FU-FAM-GOVERNANCE
+  - type: contains
+    from: FG-FAM
+    to: FU-FAM-SDS800XHD
+  - type: contains
+    from: FG-FAM
+    to: FU-FAM-DHO1000
+  - type: interacts_with
+    from: ACT-FAM-OWNER
+    to: FU-FAM-GOVERNANCE
+  - type: interacts_with
+    from: ACT-FAM-CONTRIBUTOR
+    to: FU-FAM-GOVERNANCE

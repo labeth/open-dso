@@ -1,5 +1,8 @@
 # Status
 
+<!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
+<!-- TRLC-LINKS: REQ-FAM-004 -->
+
 ## SDS1000CML+ (`open-sds1000cml`)
 
 Released firmware for the Siglent SDS1102CML+: acquisition up to the hardware's rates with its own

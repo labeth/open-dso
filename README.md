@@ -1,5 +1,8 @@
 # open-dso
 
+<!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
+<!-- TRLC-LINKS: REQ-FAM-001, REQ-FAM-009 -->
+
 Open firmware for digital storage oscilloscopes, as one family: the same features, the same web
 UI and the same look on every instrument it supports, written from our own specifications.
 

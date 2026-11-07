@@ -1,5 +1,8 @@
 # Adding a scope
 
+<!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
+<!-- TRLC-LINKS: REQ-FAM-003, REQ-FAM-004, REQ-FAM-008, REQ-FAM-009 -->
+
 A new instrument gets its own repository, `open-<model>`, and starts private. A different processor
 makes a different scope, whatever the model name says; a model that is the same board with parts
 left off is a variant inside an existing scope repository, described by its profile.

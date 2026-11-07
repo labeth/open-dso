@@ -1,0 +1,29 @@
+schemaVersion: 2
+views:
+- id: VIEW-FAMILY
+  kind: architecture-intent
+  roots:
+  - FG-FAM
+- id: VIEW-FAMILY-TRACEABILITY
+  kind: traceability
+  roots:
+  - FU-FAM-GOVERNANCE
+  maxDepth: 1
+design:
+  id: DESIGN-OPEN-DSO
+  title: open-dso family architecture
+  functionalGroups:
+  - id: FG-FAM
+    views:
+      architecture_intent:
+        title: The family as a system of systems
+        narrative: The core is the product; each scope repository is a board-support package. The family model composes
+          the public repositories' models and states the rules every scope keeps; private scopes are planned subsystems.
+  functionalUnits:
+  - id: FU-FAM-GOVERNANCE
+    group: FG-FAM
+    views:
+      traceability:
+        title: Family requirements to subsystem capabilities
+        narrative: Each family requirement realizes the family capability or links to the capabilities the core and
+          the SDS1000CML+ publish.

@@ -1,0 +1,122 @@
+schemaVersion: 2
+lintRun:
+  id: open-dso-family
+  mode: strict
+  catalogRef: ./catalog.yml
+requirements:
+- id: REQ-FAM-001
+  title: One product family
+  text: The open-dso family shall describe the firmware of every public scope as one product family in the family
+    model.
+  status: proposed
+  realizes:
+  - CAP-FAM-OPEN-FIRMWARE
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  verificationCriteria: The family model composes the published model of every public repository of the family and
+    validates without errors.
+- id: REQ-FAM-002
+  title: Shared core
+  text: The open-dso family shall implement each hardware-independent function in the shared core.
+  status: proposed
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  verificationCriteria: Every scope model composes the core's model and traces its hardware-independent requirements
+    to the core's capabilities; no scope repository holds a copy of a core function.
+- id: REQ-FAM-003
+  title: Scope repositories are board-support packages
+  text: The scope repository shall hold only the board-support package of its scope.
+  status: proposed
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  verificationCriteria: Each scope's application builds its board and hands it to the core; code that stays in a
+    scope repository has a written reason the core cannot hold it.
+- id: REQ-FAM-004
+  title: Same feature level on every scope
+  text: The scope shall provide each core capability its hardware supports.
+  status: proposed
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  - test
+  verificationCriteria: Each scope model publishes a capability for each core capability; a core capability the
+    board cannot serve is reported as absent with the reason, never faked; the same regression checklist runs on
+    every scope (on its bench unit or in its simulator).
+- id: REQ-FAM-005
+  title: Same web API
+  text: The scope shall serve the core's web API.
+  status: proposed
+  category: interface
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  - test
+  verificationCriteria: Each scope runs the core's web server, web client and SCPI engine unmodified; the page adapts
+    only through the capabilities the scope reports, and the scope's SCPI differences are its reviewed dialect table.
+- id: REQ-FAM-006
+  title: Same look
+  text: The scope shall draw its user interface with the core's design system.
+  status: proposed
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  verificationCriteria: Each scope renders its display and its web client through the core's renderer and design
+    system; a scope supplies only its display geometry and input devices.
+- id: REQ-FAM-007
+  title: Provenance
+  text: The open-dso family shall keep vendor material out of every public repository.
+  status: proposed
+  realizes:
+  - CAP-FAM-OPEN-FIRMWARE
+  category: constraint
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  verificationMethods:
+  - inspection
+  verificationCriteria: Every contribution states that it was written from the family's specifications; specifications
+    describe the hardware in the family's own words; the public instrument interface a host must see verbatim is
+    kept as reviewed tables.
+- id: REQ-FAM-008
+  title: Publication gate
+  text: While the scope repository is unreviewed, the scope repository shall stay private.
+  status: proposed
+  realizes:
+  - CAP-FAM-OPEN-FIRMWARE
+  category: constraint
+  appliesTo:
+  - FU-FAM-SDS800XHD
+  - FU-FAM-DHO1000
+  verificationMethods:
+  - inspection
+  verificationCriteria: A public scope repository has a recorded provenance review and a run on a real unit; until
+    both hold it stays private.
+- id: REQ-FAM-009
+  title: A public scope joins the family model
+  text: When a scope repository becomes public, the open-dso family shall compose the scope's model in the family
+    model.
+  status: proposed
+  realizes:
+  - CAP-FAM-OPEN-FIRMWARE
+  category: functional
+  appliesTo:
+  - FU-FAM-GOVERNANCE
+  - FU-FAM-SDS800XHD
+  - FU-FAM-DHO1000
+  verificationMethods:
+  - inspection
+  verificationCriteria: The family model declares a dependency, a subsystem and requirement links for every public
+    scope repository, at a version whose model reaches the family model's tier.

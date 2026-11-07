@@ -1,0 +1,177 @@
+schemaVersion: 2
+reqLinks:
+- id: LNK-FAM-002-CORE-BOARD-SUPPORT
+  parent: REQ-FAM-002
+  child: core::CAP-DSO-BOARD-SUPPORT
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The core runs on any scope whose board-support package implements the board interface; that is where every hardware-independent function lives.
+- id: LNK-FAM-003-CORE-BOARD-SUPPORT
+  parent: REQ-FAM-003
+  child: core::CAP-DSO-BOARD-SUPPORT
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The board interface is the boundary a scope repository implements.
+- id: LNK-FAM-003-SDS1000CML-FPGA-IMAGES
+  parent: REQ-FAM-003
+  child: sds1000cml::CAP-SDS-FPGA-IMAGES
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ repository holds its board's FPGA images, part of its board-support package.
+- id: LNK-FAM-004-SDS1000CML-ACQUISITION
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-ACQUISITION
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-ACQUISITION.
+- id: LNK-FAM-004-SDS1000CML-TRIGGER
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-TRIGGER
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-TRIGGER.
+- id: LNK-FAM-004-SDS1000CML-ANALOG-FRONT-END
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-ANALOG-FRONT-END
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-ANALOG-FRONT-END.
+- id: LNK-FAM-004-SDS1000CML-ENHANCED-RESOLUTION
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-ENHANCED-RESOLUTION
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-ENHANCED-RESOLUTION.
+- id: LNK-FAM-004-SDS1000CML-MEASUREMENT
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-MEASUREMENT
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-MEASUREMENT.
+- id: LNK-FAM-004-SDS1000CML-AUTOSET
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-AUTOSET
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-AUTOSET.
+- id: LNK-FAM-004-SDS1000CML-SIGNAL-ANALYSIS
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-SIGNAL-ANALYSIS
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-SIGNAL-ANALYSIS.
+- id: LNK-FAM-004-SDS1000CML-COMPARE
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-COMPARE
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-COMPARE.
+- id: LNK-FAM-004-SDS1000CML-PROTOCOL-DECODE
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-PROTOCOL-DECODE
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-PROTOCOL-DECODE.
+- id: LNK-FAM-004-SDS1000CML-BUS-ANALYSIS
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-BUS-ANALYSIS
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-BUS-ANALYSIS.
+- id: LNK-FAM-004-SDS1000CML-SOUND
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-SOUND
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-SOUND.
+- id: LNK-FAM-004-SDS1000CML-SETTINGS
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-SETTINGS
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-SETTINGS.
+- id: LNK-FAM-004-SDS1000CML-SUPERVISED-OPERATION
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-SUPERVISED-OPERATION
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-SUPERVISED-OPERATION.
+- id: LNK-FAM-004-SDS1000CML-FIRMWARE-UPDATE
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-FIRMWARE-UPDATE
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-FIRMWARE-UPDATE.
+- id: LNK-FAM-004-SDS1000CML-DIAGNOSTICS
+  parent: REQ-FAM-004
+  child: sds1000cml::CAP-SDS-DIAGNOSTICS
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ provides the core capability CAP-DSO-DIAGNOSTICS.
+- id: LNK-FAM-005-CORE-WEB-UI
+  parent: REQ-FAM-005
+  child: core::CAP-DSO-WEB-UI
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The core's web server and client are the family's web UI.
+- id: LNK-FAM-005-CORE-REMOTE-PROGRAMMING
+  parent: REQ-FAM-005
+  child: core::CAP-DSO-REMOTE-PROGRAMMING
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The core's SCPI engine is the family's remote programming interface.
+- id: LNK-FAM-005-SDS1000CML-WEB-UI
+  parent: REQ-FAM-005
+  child: sds1000cml::CAP-SDS-WEB-UI
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ serves the web UI.
+- id: LNK-FAM-005-SDS1000CML-REMOTE-PROGRAMMING
+  parent: REQ-FAM-005
+  child: sds1000cml::CAP-SDS-REMOTE-PROGRAMMING
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ serves SCPI over VXI-11.
+- id: LNK-FAM-006-CORE-FRONT-PANEL
+  parent: REQ-FAM-006
+  child: core::CAP-DSO-FRONT-PANEL
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The core's UI model and renderer draw the instrument's own display.
+- id: LNK-FAM-006-CORE-WEB-UI
+  parent: REQ-FAM-006
+  child: core::CAP-DSO-WEB-UI
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The core's web client carries the same look to the browser.
+- id: LNK-FAM-006-SDS1000CML-FRONT-PANEL
+  parent: REQ-FAM-006
+  child: sds1000cml::CAP-SDS-FRONT-PANEL
+  pinned:
+    version: v0.2.0
+  status: claimed
+  rationale: The SDS1000CML+ operates from its own front panel and LCD.
