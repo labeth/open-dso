@@ -88,8 +88,10 @@ requirements:
   verificationMethods:
   - inspection
   verificationCriteria: Every contribution states that it was written from the family's specifications; specifications
-    describe the hardware in the family's own words; the public instrument interface a host must see verbatim is
-    kept as reviewed tables.
+    describe the hardware in the family's own words, hardware facts marked UNVERIFIED until measured on a unit; no
+    vendor code, file, string, symbol name, codename or description of the vendor firmware's internals is published;
+    the interface literals the firmware or a host must use are kept as reviewed tables (core
+    ADR-PROVENANCE-HARDWARE-FACTS).
 - id: REQ-FAM-008
   title: Publication gate
   text: While the scope repository is unreviewed, the scope repository shall stay private.

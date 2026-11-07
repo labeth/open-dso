@@ -11,8 +11,10 @@ left off is a variant inside an existing scope repository, described by its prof
 
 Write implementable specifications (`specs/00`–`12`, the same numbering as every scope; topics from
 13 up are shared numbers, scope-only topics start at 20). They describe the hardware and its
-interfaces in your own words — no vendor code, strings, symbol names or data beyond the public
-instrument interface (see [contributing](contributing.md)).
+interfaces in your own words — no vendor code, files, strings, symbol names, codenames or
+descriptions of the vendor firmware's internals. Hardware facts (registers, sequences, timings, pin
+maps, key codes) are hardware description, marked UNVERIFIED until measured on a unit; interface
+literals the firmware or a host must use stay verbatim (see [contributing](contributing.md)).
 
 ## 2. A simulator before a unit
 

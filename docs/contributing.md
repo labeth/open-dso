@@ -7,13 +7,20 @@
 
 The family is written from our own specifications. That rule protects every repository:
 
-- **No vendor material, and nothing derived from it, in any public repository** — no vendor code,
-  strings, symbol or accessor names, data taken from vendor files, or anything reconstructed from a
-  vendor netlist, bitstream or decompiled code.
+- **Never in a public repository:** vendor code; vendor files, verbatim or transcribed (scripts,
+  configuration, tables, headers); vendor strings; vendor symbol, function, class and accessor names;
+  internal codenames; and descriptions of how the vendor firmware behaves internally (its loops,
+  polls, threads, caches, bugs and order of operations).
+- **Hardware facts may be published as hardware description**, in our own words: register maps,
+  initialisation values and sequences, timings, pin and ball maps, I/O standards, key codes — also
+  when they were learned from the vendor firmware or bitstream. Each is stated as what the hardware
+  needs, without attribution, and marked **UNVERIFIED** until it is measured on a unit.
+- **Interoperation literals stay verbatim**, kept to what the firmware or a host must use: device
+  paths, file names the firmware must open or must never write, device-tree compatibles, and the
+  public instrument interface (SCPI command names from the public programming guides, waveform
+  formats and their public field names), kept as reviewed tables.
 - Specifications describe the hardware and its interfaces in our own words. Code is written from
   the specifications.
-- The one exception is the public instrument interface a host must see verbatim to stay compatible
-  (SCPI command names, waveform formats), kept as reviewed tables.
 - A contribution states that it was written from the specifications.
 
 ## Where a change goes
