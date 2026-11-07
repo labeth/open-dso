@@ -6,8 +6,8 @@ on:
   pull_request:
   workflow_dispatch:
 
-# The family model (model/) composes the published models of open-dso-core and
-# open-sds1000cml. Until those models are published to a registry they resolve
+# The family model (model/) composes the published models of open-dso-core,
+# open-sds1000cml and open-sds800xhd. Until those models are published to a registry they resolve
 # from checkouts beside this repository, through the workspace file
 # scripts/workspace.sh writes (named by ENGMOD_WORK); with the replacements
 # active the lock is not compared (composition.lock_check_skipped, a warning).
@@ -37,8 +37,12 @@ jobs:
             sleep 15
           done
           exit 1
+      # Anonymous clones: a composed repository that is private (or missing)
+      # fails this step with its name, never a silent partial model.
       - name: Check out the composed repositories beside this one
-        run: scripts/workspace.sh .. | sed 's/^export //' >> "$GITHUB_ENV"
+        run: |
+          set -o pipefail
+          scripts/workspace.sh .. | sed 's/^export //' >> "$GITHUB_ENV"
       - name: Validate the model and regenerate the documentation
         run: scripts/generate.sh
       - name: The committed documentation is the generated one

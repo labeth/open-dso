@@ -16,22 +16,11 @@ architecture:
     prose: 'The open-dso repository: the README, the architecture, adding-a-scope, contributing and status documents,
       and this model. It holds no code and copies no decision or specification; the family''s architecture decisions
       are the core''s decision log (open-dso-core/model/decisions.yml, among them ADR-UMBRELLA-REPO for this repository).'
-  - id: FU-FAM-SDS800XHD
-    name: SDS800X HD board-support package (planned)
-    group: FG-FAM
-    prose: 'Planned subsystem: the Siglent SDS800X HD scope repository (open-sds800xhd), private. Its board layer
-      implements the HAL against a simulator; its model is not yet held to the product tier. It joins this model as
-      a composed subsystem when the repository becomes public and its model has reached the product tier the core and
-      the SDS1000CML+ are held to (a product-tier model composes no dependency below it without an accepted risk).
-      No dependency is declared before then: a public repository''s CI cannot fetch a private model.'
-    tags:
-    - planned
-    - private
   - id: FU-FAM-DHO1000
     name: DHO1000 board-support package (planned)
     group: FG-FAM
     prose: 'Planned subsystem: the Rigol DHO1000 scope repository (open-dho1000), private, at the specification stage.
-      It joins this model as a composed subsystem when the repository becomes public, as the SDS800X HD does.'
+      It joins this model as a composed subsystem when the repository becomes public, as the SDS800X HD did.'
     tags:
     - planned
     - private
@@ -58,4 +47,8 @@ architecture:
     - id: SUB-FAM-SDS1000CML
       name: SDS1000CML+ firmware
       dependency: sds1000cml
+      publication: public
+    - id: SUB-FAM-SDS800XHD
+      name: SDS800X HD firmware
+      dependency: sds800xhd
       publication: public

@@ -175,3 +175,52 @@ reqLinks:
     version: v0.2.0
   status: claimed
   rationale: The SDS1000CML+ operates from its own front panel and LCD.
+- id: LNK-FAM-003-SDS800XHD-PLATFORM
+  parent: REQ-FAM-003
+  child: sds800xhd::CAP-HD-PLATFORM
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD repository holds its board's platform layer (launch hook, takeover and the hardware packages behind the core's board interface).
+- id: LNK-FAM-003-SDS800XHD-SIMULATION
+  parent: REQ-FAM-003
+  child: sds800xhd::CAP-HD-SIMULATION
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD repository holds the simulator harness its board is verified in, part of its board-support package.
+- id: LNK-FAM-004-SDS800XHD-ACQUISITION
+  parent: REQ-FAM-004
+  child: sds800xhd::CAP-HD-ACQUISITION
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD provides the core capability CAP-DSO-ACQUISITION.
+- id: LNK-FAM-004-SDS800XHD-SETTINGS
+  parent: REQ-FAM-004
+  child: sds800xhd::CAP-HD-SETTINGS
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD provides the core capability CAP-DSO-SETTINGS.
+- id: LNK-FAM-004-SDS800XHD-SUPERVISION
+  parent: REQ-FAM-004
+  child: sds800xhd::CAP-HD-SUPERVISION
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD runs under the core's supervisor (CAP-DSO-SUPERVISED-OPERATION).
+- id: LNK-FAM-005-SDS800XHD-REMOTE
+  parent: REQ-FAM-005
+  child: sds800xhd::CAP-HD-REMOTE
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD serves the core's SCPI engine with its dialect table (CAP-DSO-REMOTE-PROGRAMMING).
+- id: LNK-FAM-006-SDS800XHD-DISPLAY-PANEL
+  parent: REQ-FAM-006
+  child: sds800xhd::CAP-HD-DISPLAY-PANEL
+  pinned:
+    version: v0.1.0
+  status: claimed
+  rationale: The SDS800X HD shows the core's user interface and front-panel model (CAP-DSO-FRONT-PANEL).

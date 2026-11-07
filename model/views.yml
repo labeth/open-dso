@@ -26,4 +26,4 @@ design:
       traceability:
         title: Family requirements to subsystem capabilities
         narrative: Each family requirement realizes the family capability or links to the capabilities the core and
-          the SDS1000CML+ publish.
+          the scopes publish.

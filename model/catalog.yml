@@ -24,6 +24,10 @@ catalog:
     name: SDS1000CML+ firmware
     definition: The scope repository for the Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants); modelled
       by its own model (subsystem SUB-FAM-SDS1000CML).
+  - id: SYS-SDS800XHD
+    name: SDS800X HD firmware
+    definition: The scope repository for the Siglent SDS800X HD (SDS802X HD to SDS824X HD, one acquisition board),
+      verified in simulation only; modelled by its own model (subsystem SUB-FAM-SDS800XHD).
   functionalGroups:
   - id: FG-FAM
     name: family governance
@@ -32,9 +36,6 @@ catalog:
   - id: FU-FAM-GOVERNANCE
     name: family model and documentation
     definition: The open-dso repository; the family README, documentation and system model, holding no code.
-  - id: FU-FAM-SDS800XHD
-    name: SDS800X HD board-support package
-    definition: Planned subsystem; the private SDS800X HD scope repository.
   - id: FU-FAM-DHO1000
     name: DHO1000 board-support package
     definition: Planned subsystem; the private DHO1000 scope repository.

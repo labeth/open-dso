@@ -6,9 +6,6 @@ behavior:
     to: FU-FAM-GOVERNANCE
   - type: contains
     from: FG-FAM
-    to: FU-FAM-SDS800XHD
-  - type: contains
-    from: FG-FAM
     to: FU-FAM-DHO1000
   - type: interacts_with
     from: ACT-FAM-OWNER

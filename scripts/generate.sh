@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Regenerates docs/generated/ from the family model.
 #
-# The model composes the public models of open-dso-core and open-sds1000cml,
-# so it needs a workspace file naming their checkouts: ENGMOD_WORK, or one
-# found above this repository (scripts/workspace.sh writes one). The engine
+# The model composes the public models of open-dso-core, open-sds1000cml and
+# open-sds800xhd, so it needs a workspace file naming their checkouts:
+# ENGMOD_WORK, or one found above this repository (scripts/workspace.sh
+# writes one). The engine
 # tools are those of engineering-model-go at ENGMODEL_VERSION, found on PATH
 # (go install github.com/labeth/engineering-model-go/cmd/<tool>@<version>).
 set -euo pipefail

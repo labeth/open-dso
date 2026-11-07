@@ -5,7 +5,7 @@ module:
   modelId: open-dso
   title: open-dso family engineering model
   introduction: 'The open oscilloscope firmware family as a system of systems: the shared core, which is the product,
-    and one board-support package per scope. The model composes the public models (open-dso-core and the SDS1000CML+)
+    and one board-support package per scope. The model composes the public models (open-dso-core, the SDS1000CML+ and the SDS800X HD)
     and states the rules every scope keeps: one product family, one shared core, the same feature level, the same
     web API and look, and no vendor material in any public repository.'
   kind: system
@@ -30,13 +30,17 @@ dependencies:
   version: v0.2.0
   publications:
   - public
+- alias: sds800xhd
+  path: github.com/labeth/open-sds800xhd/model@v0
+  version: v0.1.0
+  publications:
+  - public
 requirementLinks: strict
 publications:
 - id: public
   architecture:
   - FG-FAM
   - FU-FAM-GOVERNANCE
-  - FU-FAM-SDS800XHD
   - FU-FAM-DHO1000
   - ACT-FAM-OWNER
   - ACT-FAM-CONTRIBUTOR

@@ -98,12 +98,12 @@ requirements:
   - CAP-FAM-OPEN-FIRMWARE
   category: constraint
   appliesTo:
-  - FU-FAM-SDS800XHD
   - FU-FAM-DHO1000
   verificationMethods:
   - inspection
-  verificationCriteria: A public scope repository has a recorded provenance review and a run on a real unit; until
-    both hold it stays private.
+  verificationCriteria: A public scope repository has a recorded provenance review of its whole tree and history;
+    until it has one it stays private. A public scope that has not run on a real unit says it is verified in
+    simulation only.
 - id: REQ-FAM-009
   title: A public scope joins the family model
   text: When a scope repository becomes public, the open-dso family shall compose the scope's model in the family
@@ -114,7 +114,6 @@ requirements:
   category: functional
   appliesTo:
   - FU-FAM-GOVERNANCE
-  - FU-FAM-SDS800XHD
   - FU-FAM-DHO1000
   verificationMethods:
   - inspection
