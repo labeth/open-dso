@@ -49,9 +49,9 @@ roll, protocol and zone triggers, streams) is refused with its reason, as on a s
 | [open-sds800xhd](https://github.com/labeth/open-sds800xhd) | Siglent SDS800X HD (SDS802X HD to SDS824X HD) | board layer complete; verified in simulation only, no unit yet | public |
 | open-dho1000 | Rigol DHO1000 | specifications | private |
 
-A scope repository stays private until it — its tree and its history — has passed a provenance
-review. A scope published before its firmware has run on a real unit is marked verified in
-simulation only.
+A scope repository can be public at any stage, specifications included, once its tree and its
+history have passed a provenance review. A scope whose firmware has not run on a real unit is marked
+verified in simulation only.
 
 ## Read next
 

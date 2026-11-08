@@ -41,11 +41,15 @@ Staged, from safe to risky: a read-only census of the unit, then the application
 the vendor firmware owns the front end, then front-end and trigger writes, then display. A recovery
 procedure is proven on the unit before anything is installed.
 
-## 6. Going public
+## 6. First release
 
-When the repository — its whole tree and its history — has passed a provenance review, it can become
-public and joins the [status](status.md) table. The review is the gate; a running unit is not. A
-scope that has not yet run on a real unit is published as verified in simulation only, and says so
-in its README and in the status table until a unit confirms it. Its model then joins the
-family model as a subsystem once it is held to the product tier (see
+Tag a first release when the firmware runs on a unit, installs and recovers safely, and passes the
+family's regression checklist. Until then the scope is marked verified in simulation only, in its
+README and in the [status](status.md) table.
+
+## Making a repository public
+
+A scope repository can be made public at any stage, from specifications only to released firmware,
+once its whole tree and history have passed a provenance review. It then joins the status table, and
+its model joins the family model as a subsystem once it is held to the product tier (see
 [how a scope joins the family model](../README.md#how-a-scope-joins-the-family-model)).
