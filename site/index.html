@@ -221,7 +221,7 @@
     <div class="diagram">
       <svg viewBox="0 0 420 404" role="img" aria-labelledby="arch-t arch-d">
         <title id="arch-t">How the family is built</title>
-        <desc id="arch-d">open-dso-core, the product, sits on top. Below it the hal.Board interface, which every scope repository implements: open-sds1000cml (released), open-sds800xhd (verified in simulation) and open-dho1000 (specifications, planned).</desc>
+        <desc id="arch-d">open-dso-core, the product, sits on top. Below it the hal.Board interface, which every scope repository implements: open-sds1000cml (released), open-sds800xhd (verified in simulation) and open-dho1000 (specifications, looking for a porter).</desc>
         <path class="d-line" d="M210 212V226M67 254V268M210 254V268M353 254V268"/>
         <rect class="d-core" x="2" y="2" width="416" height="210" rx="12" stroke-width="1.5"/>
         <text class="d-t" x="18" y="30" font-size="16" font-family="ui-monospace,Menlo,Consolas,monospace">open-dso-core</text>
@@ -257,7 +257,7 @@
           <text class="d-t" x="298" y="290" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11.5">open-dho1000</text>
           <text class="d-s" x="298" y="309">DHO1000</text>
           <circle cx="302" cy="327" r="4" fill="var(--spec)"/><text class="d-s" x="312" y="331">specifications</text>
-          <text class="d-s" x="298" y="360">private until</text><text class="d-s" x="298" y="376">reviewed</text>
+          <text class="d-s" x="298" y="360">specs public,</text><text class="d-s" x="298" y="376">needs a porter</text>
         </g>
       </svg>
     </div>
@@ -299,8 +299,10 @@
       <article class="card">
         <h3>open-dho1000</h3>
         <p class="model">Rigol DHO1000</p>
-        <span class="status">specifications</span>
-        <p>Being specified. The repository stays private until it passes the provenance review.</p>
+        <span class="status">specifications, looking for a porter</span>
+        <p>The hardware and its interfaces are specified; every fact is unverified, and there is no firmware
+          yet. If you have a DHO1000, this is the place to start.</p>
+        <div class="links"><a href="https://github.com/labeth/open-dho1000">Specifications</a></div>
       </article>
     </div>
   </div>

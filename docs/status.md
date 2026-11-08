@@ -22,9 +22,11 @@ state and SCPI engine. No unit has been on a bench yet: everything above is veri
 only, and the arrival plan stages first contact. Its model is held to the product tier and composed
 by the family model (subsystem `SUB-FAM-SDS800XHD`).
 
-## DHO1000 (`open-dho1000`, private)
+## DHO1000 (`open-dho1000`) — specifications
 
-Specifications.
+The specifications are public: the hardware and its interfaces in our own words, every fact marked
+UNVERIFIED. There is no firmware yet and nothing has been checked on a unit. Someone with a DHO1000
+who wants to port open-dso to it can start from its README.
 
 ## Next
 

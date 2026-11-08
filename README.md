@@ -47,7 +47,7 @@ roll, protocol and zone triggers, streams) is refused with its reason, as on a s
 | [open-dso-core](https://github.com/labeth/open-dso-core) | The shared product: engine, HAL, renderer, web, SCPI, analysis, supervisor | used by the SDS1000CML+ and the SDS800X HD | public |
 | [open-sds1000cml](https://github.com/labeth/open-sds1000cml) | Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants) | released (v1.2.x); main runs on the core | public |
 | [open-sds800xhd](https://github.com/labeth/open-sds800xhd) | Siglent SDS800X HD (SDS802X HD to SDS824X HD) | board layer complete; verified in simulation only, no unit yet | public |
-| open-dho1000 | Rigol DHO1000 | specifications | private |
+| [open-dho1000](https://github.com/labeth/open-dho1000) | Rigol DHO1000 | specifications; looking for someone with a unit to port it | public |
 
 A scope repository can be public at any stage, specifications included, once its tree and its
 history have passed a provenance review. A scope whose firmware has not run on a real unit is marked
@@ -87,8 +87,8 @@ What it covers:
   `CAP-FAM-OPEN-FIRMWARE`, and is implemented by the documentation in this repository (its
   `TRLC-LINKS` markers). The requirements are `proposed` and the links `claimed` until the family
   owner reviews them.
-- **Planned subsystems.** A private scope (the DHO1000) appears as a planned unit
-  (`FU-FAM-DHO1000`) without a dependency: a public repository's CI cannot fetch a private model.
+- **Planned subsystems.** A scope with specifications but no firmware or model yet (the DHO1000)
+  appears as a planned unit (`FU-FAM-DHO1000`) without a dependency, until it has a model to compose.
 - **Decisions.** The family's architecture decisions stay in the core's log (below); `model/decisions.yml`
   holds only decisions about this model itself (its life-cycle tier, proposed).
 
