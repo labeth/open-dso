@@ -3,87 +3,413 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>open-dso</title>
-<style>
-  :root { --bg: #fff; --fg: #1d232b; --dim: #5b6672; --edge: #d9dee4; --link: #0b62c4; --code: #f3f5f7; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #12161b; --fg: #dfe5ec; --dim: #8d97a3; --edge: #2d353f; --link: #6cb2ff; --code: #1b2129; } }
-  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, sans-serif; }
-  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
-  a { color: var(--link); }
-  h1 { font-size: 2em; margin: .2em 0 .4em; } h2 { margin-top: 1.6em; border-bottom: 1px solid var(--edge); padding-bottom: .2em; }
-  code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: .9em; }
-  pre { background: var(--code); padding: 12px; border-radius: 6px; overflow-x: auto; } pre code { padding: 0; }
-  table { border-collapse: collapse; display: block; overflow-x: auto; } th, td { border: 1px solid var(--edge); padding: 4px 8px; text-align: left; }
-  .try { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
-  .try a { padding: 10px 16px; border: 1px solid var(--link); border-radius: 8px; text-decoration: none; font-weight: 600; }
-</style>
+<title>open-dso: open firmware for oscilloscopes</title>
+<meta name="description" content="Open firmware for digital storage oscilloscopes, one family: the same features, web UI and look on every instrument. Try it in your browser.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://labeth.github.io/open-dso/">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="open-dso">
+<meta property="og:title" content="open-dso: open firmware for oscilloscopes">
+<meta property="og:description" content="One family: the same features, web UI and look on every instrument. Try the firmware in your browser.">
+<meta property="og:url" content="https://labeth.github.io/open-dso/">
+<meta property="og:image" content="https://labeth.github.io/open-dso/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The open-dso logo, a square pulse on a scope screen, and the line: open firmware for digital storage oscilloscopes">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-<main>
-  <div class="try"><a href="https://labeth.github.io/open-sds1000cml/">Try the SDS1000CML+ demo</a><a href="https://labeth.github.io/open-sds800xhd/">Try the SDS800X HD demo</a></div>
-  <div id="readme">Loading…</div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="open-dso home">
+      <img class="d" src="img/lockup-dark.svg" alt="open-dso" width="330" height="64">
+      <img class="l" src="img/lockup-light.svg" alt="open-dso" width="330" height="64">
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a class="hide-s" href="#features">Features</a>
+      <a class="hide-s" href="#scopes">Scopes</a>
+      <a href="#port">Port a scope</a>
+      <a href="docs.html">Docs</a>
+      <a class="hide-xs" href="https://github.com/labeth/open-dso">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">open-dso</p>
+      <h1>Open firmware for digital storage oscilloscopes</h1>
+      <p class="lead">One family: the same features, web UI and look on every instrument. The demos below run
+        the real firmware in a browser tab, against a simulated board with a signal generator on its inputs.</p>
+      <div class="ctas">
+        <a class="btn primary" href="https://labeth.github.io/open-sds1000cml/">Try the SDS1000CML+ in your browser <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn" href="https://labeth.github.io/open-sds800xhd/">Try the SDS800X HD in your browser <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <p class="porter">Have a different scope? Write its board package and the core brings the rest.</p>
+      <a class="btn ghost" href="#port">Bring your scope <span class="arr" aria-hidden="true">↓</span></a>
+    </div>
+    <figure class="scope">
+<svg viewBox="0 0 600 380" role="img" aria-labelledby="scope-t">
+<title id="scope-t">An oscilloscope screen: a serial line on channel 1 with its bytes decoded as the text open-dso, and a sine wave on channel 2</title>
+<defs><clipPath id="plot"><rect x="0" y="18" width="600" height="320"/></clipPath></defs>
+<path d="M60 18V338M120 18V338M180 18V338M240 18V338M300 18V338M360 18V338M420 18V338M480 18V338M540 18V338M0 58H600M0 98H600M0 138H600M0 178H600M0 218H600M0 258H600M0 298H600" stroke="#182430" stroke-width="1"/>
+<path d="M0 178H600M300 18V338" stroke="#26384a" stroke-width="1"/>
+<path d="M12 174v6M24 174v6M36 174v6M48 174v6M60 174v6M72 174v6M84 174v6M96 174v6M108 174v6M120 174v6M132 174v6M144 174v6M156 174v6M168 174v6M180 174v6M192 174v6M204 174v6M216 174v6M228 174v6M240 174v6M252 174v6M264 174v6M276 174v6M288 174v6M300 174v6M312 174v6M324 174v6M336 174v6M348 174v6M360 174v6M372 174v6M384 174v6M396 174v6M408 174v6M420 174v6M432 174v6M444 174v6M456 174v6M468 174v6M480 174v6M492 174v6M504 174v6M516 174v6M528 174v6M540 174v6M552 174v6M564 174v6M576 174v6M588 174v6M297 26h6M297 34h6M297 42h6M297 50h6M297 58h6M297 66h6M297 74h6M297 82h6M297 90h6M297 98h6M297 106h6M297 114h6M297 122h6M297 130h6M297 138h6M297 146h6M297 154h6M297 162h6M297 170h6M297 178h6M297 186h6M297 194h6M297 202h6M297 210h6M297 218h6M297 226h6M297 234h6M297 242h6M297 250h6M297 258h6M297 266h6M297 274h6M297 282h6M297 290h6M297 298h6M297 306h6M297 314h6M297 322h6M297 330h6" stroke="#26384a" stroke-width="1"/>
+<path d="M0 102H600" stroke="#f2a63b" stroke-width="1" stroke-dasharray="2 4" opacity=".7"/>
+<g clip-path="url(#plot)"><g class="roll" style="--shift:-1260px;--dur:21s">
+<path d="M-40 66H0L1.5 138H10L11.5 66H50L51.5 138H60L61.5 66H80L81.5 138H90L91.5 66H140H140L141.5 138H190L191.5 66H220L221.5 138H230L231.5 66H280H280L281.5 138H290L291.5 66H300L301.5 138H310L311.5 66H320L321.5 138H340L341.5 66H360L361.5 138H370L371.5 66H420H420L421.5 138H440L441.5 66H470L471.5 138H480L481.5 66H500L501.5 138H510L511.5 66H560H560L561.5 138H570L571.5 66H580L581.5 138H590L591.5 66H610L611.5 138H620L621.5 66H630L631.5 138H650L651.5 66H700H700L701.5 138H730L731.5 66H740L741.5 138H760L761.5 66H780L781.5 138H790L791.5 66H840H840L841.5 138H850L851.5 66H870L871.5 138H890L891.5 66H920L921.5 138H930L931.5 66H980H980L981.5 138H990L991.5 66H1030L1031.5 138H1040L1041.5 66H1060L1061.5 138H1070L1071.5 66H1120H1120L1121.5 138H1180L1181.5 66H1190L1191.5 138H1210L1211.5 66H1260H1260L1261.5 138H1270L1271.5 66H1310L1311.5 138H1320L1321.5 66H1340L1341.5 138H1350L1351.5 66H1400H1400L1401.5 138H1450L1451.5 66H1480L1481.5 138H1490L1491.5 66H1540H1540L1541.5 138H1550L1551.5 66H1560L1561.5 138H1570L1571.5 66H1580L1581.5 138H1600L1601.5 66H1620L1621.5 138H1630L1631.5 66H1680H1680L1681.5 138H1700L1701.5 66H1730L1731.5 138H1740L1741.5 66H1760L1761.5 138H1770L1771.5 66H1820H1820L1821.5 138H1830L1831.5 66H1840L1841.5 138H1850L1851.5 66H1870L1871.5 138H1880L1881.5 66H1890L1891.5 138H1910L1911.5 66H1960H1960L1961.5 138H1990L1991.5 66H2000L2001.5 138H2020L2021.5 66H2040L2041.5 138H2050L2051.5 66H2100H2100L2101.5 138H2110L2111.5 66H2130L2131.5 138H2150L2151.5 66H2180L2181.5 138H2190L2191.5 66H2240H2240L2241.5 138H2250L2251.5 66H2290L2291.5 138H2300L2301.5 66H2320L2321.5 138H2330L2331.5 66H2380H2380L2381.5 138H2440L2441.5 66H2450L2451.5 138H2470L2471.5 66H2520" fill="none" stroke="#f5d90a" stroke-width="2" stroke-linejoin="round"/>
+<g fill="#0f3550" stroke="#4fa8ff" stroke-width="1"><path d="M14 156H86L90 168L86 180H14L10 168Z"/><path d="M154 156H226L230 168L226 180H154L150 168Z"/><path d="M294 156H366L370 168L366 180H294L290 168Z"/><path d="M434 156H506L510 168L506 180H434L430 168Z"/><path d="M574 156H646L650 168L646 180H574L570 168Z"/><path d="M714 156H786L790 168L786 180H714L710 168Z"/><path d="M854 156H926L930 168L926 180H854L850 168Z"/><path d="M994 156H1066L1070 168L1066 180H994L990 168Z"/><path d="M1134 156H1206L1210 168L1206 180H1134L1130 168Z"/><path d="M1274 156H1346L1350 168L1346 180H1274L1270 168Z"/><path d="M1414 156H1486L1490 168L1486 180H1414L1410 168Z"/><path d="M1554 156H1626L1630 168L1626 180H1554L1550 168Z"/><path d="M1694 156H1766L1770 168L1766 180H1694L1690 168Z"/><path d="M1834 156H1906L1910 168L1906 180H1834L1830 168Z"/><path d="M1974 156H2046L2050 168L2046 180H1974L1970 168Z"/><path d="M2114 156H2186L2190 168L2186 180H2114L2110 168Z"/><path d="M2254 156H2326L2330 168L2326 180H2254L2250 168Z"/><path d="M2394 156H2466L2470 168L2466 180H2394L2390 168Z"/></g>
+<g fill="#cfe6ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12.5" font-weight="600" text-anchor="middle"><text x="50.0" y="172.5">6F <tspan fill="#7c8894">o</tspan></text><text x="190.0" y="172.5">70 <tspan fill="#7c8894">p</tspan></text><text x="330.0" y="172.5">65 <tspan fill="#7c8894">e</tspan></text><text x="470.0" y="172.5">6E <tspan fill="#7c8894">n</tspan></text><text x="610.0" y="172.5">2D <tspan fill="#7c8894">-</tspan></text><text x="750.0" y="172.5">64 <tspan fill="#7c8894">d</tspan></text><text x="890.0" y="172.5">73 <tspan fill="#7c8894">s</tspan></text><text x="1030.0" y="172.5">6F <tspan fill="#7c8894">o</tspan></text><text x="1170.0" y="172.5">20 <tspan fill="#7c8894">·</tspan></text><text x="1310.0" y="172.5">6F <tspan fill="#7c8894">o</tspan></text><text x="1450.0" y="172.5">70 <tspan fill="#7c8894">p</tspan></text><text x="1590.0" y="172.5">65 <tspan fill="#7c8894">e</tspan></text><text x="1730.0" y="172.5">6E <tspan fill="#7c8894">n</tspan></text><text x="1870.0" y="172.5">2D <tspan fill="#7c8894">-</tspan></text><text x="2010.0" y="172.5">64 <tspan fill="#7c8894">d</tspan></text><text x="2150.0" y="172.5">73 <tspan fill="#7c8894">s</tspan></text><text x="2290.0" y="172.5">6F <tspan fill="#7c8894">o</tspan></text><text x="2430.0" y="172.5">20 <tspan fill="#7c8894">·</tspan></text></g>
+<path d="M0 251.6L3 245.1L6 240.1L9 233.0L12 228.5L15 223.0L18 217.8L21 214.8L24 210.5L27 208.8L30 206.2L33 205.3L36 205.9L39 207.5L42 207.4L45 209.9L48 213.9L51 218.3L54 221.9L57 226.4L60 233.1L63 236.8L66 244.6L69 249.5L72 255.3L75 261.4L78 267.7L81 274.5L84 278.3L87 284.0L90 288.3L93 291.2L96 294.4L99 295.4L102 296.6L105 297.4L108 298.0L111 296.2L114 293.9L117 291.7L120 287.9L123 283.3L126 279.7L129 274.2L132 267.6L135 262.4L138 256.2L141 250.8L144 244.3L147 237.3L150 233.1L153 225.8L156 221.6L159 217.9L162 212.8L165 210.5L168 207.2L171 207.1L174 206.6L177 206.3L180 208.0L183 208.5L186 211.9L189 215.0L192 218.9L195 223.2L198 229.2L201 234.9L204 239.7L207 246.2L210 251.0L213 258.6L216 264.6L219 271.2L222 276.3L225 280.2L228 285.0L231 289.6L234 291.5L237 295.0L240 296.1L243 297.0L246 297.0L249 297.9L252 294.9L255 292.9L258 290.2L261 287.5L264 281.3L267 277.2L270 272.1L273 267.1L276 260.9L279 254.9L282 247.4L285 241.6L288 235.5L291 231.0L294 226.0L297 219.4L300 215.3L303 211.9L306 209.1L309 207.6L312 206.6L315 205.5L318 205.3L321 207.5L324 209.4L327 212.7L330 217.0L333 220.6L336 225.0L339 230.5L342 236.2L345 240.8L348 248.8L351 254.7L354 261.0L357 266.9L360 271.7L363 277.1L366 281.4L369 286.9L372 289.4L375 292.5L378 295.1L381 296.5L384 297.6L387 296.8L390 295.7L393 294.3L396 291.6L399 288.9L402 284.2L405 281.5L408 275.8L411 269.3L414 263.7L417 257.8L420 251.7L423 245.0L426 240.5L429 235.0L432 228.3L435 223.3L438 217.8L441 213.9L444 211.1L447 208.4L450 207.9L453 205.4L456 205.0L459 207.7L462 208.3L465 209.8L468 213.7L471 216.3L474 221.8L477 227.7L480 232.8L483 238.2L486 243.3L489 249.6L492 255.4L495 262.8L498 268.2L501 274.4L504 278.7L507 283.2L510 288.6L513 292.6L516 295.1L519 297.0L522 298.3L525 298.5L528 297.0L531 296.4L534 294.0L537 290.5L540 286.9L543 283.3L546 278.5L549 274.2L552 269.2L555 262.1L558 257.1L561 251.0L564 244.8L567 237.5L570 231.4L573 226.1L576 221.1L579 216.7L582 213.9L585 211.4L588 209.0L591 206.7L594 206.4L597 206.8L600 206.2L603 209.3L606 212.4L609 215.4L612 219.3L615 223.3L618 227.7L621 234.6L624 239.4L627 246.5L630 253.0L633 257.9L636 264.0L639 271.1L642 276.1L645 280.0L648 284.4L651 288.4L654 293.4L657 295.7L660 296.1L663 298.5L666 299.0L669 297.6L672 295.4L675 293.6L678 289.6L681 285.6L684 283.3L687 277.7L690 272.0L693 267.2L696 260.1L699 254.9L702 248.6L705 241.1L708 235.3L711 229.7L714 224.4L717 220.4L720 215.5L723 212.3L726 208.9L729 208.6L732 206.1L735 205.9L738 206.6L741 208.5L744 209.5L747 213.4L750 216.0L753 220.3L756 225.0L759 229.1L762 235.7L765 241.1L768 246.8L771 254.7L774 259.5L777 266.2L780 272.5L783 277.5L786 281.9L789 286.7L792 290.5L795 294.1L798 294.9L801 297.4L804 297.4L807 297.3L810 297.4L813 295.1L816 292.6L819 289.8L822 286.2L825 280.6L828 275.8L831 270.1L834 264.3L837 258.6L840 251.9L843 245.9L846 239.7L849 234.9L852 228.8L855 224.1L858 219.7L861 214.3L864 211.6L867 209.9L870 207.9L873 205.4L876 205.2L879 206.6L882 207.3L885 210.0L888 212.7L891 217.7L894 222.4L897 227.5L900 231.3L903 238.3L906 244.1L909 249.2L912 257.0L915 263.3L918 267.5L921 274.8L924 278.8L927 283.8L930 289.0L933 292.2L936 293.6L939 296.2L942 297.6L945 297.6L948 296.9L951 295.9L954 294.8L957 290.4L960 288.1L963 283.7L966 278.0L969 273.4L972 268.4L975 262.3L978 255.2L981 251.0L984 244.4L987 238.8L990 231.2L993 226.1L996 220.7L999 218.0L1002 213.1L1005 209.7L1008 208.1L1011 207.6L1014 206.7L1017 205.7L1020 206.4L1023 209.9L1026 211.6L1029 215.2L1032 217.8L1035 222.3L1038 228.8L1041 233.8L1044 238.8L1047 246.8L1050 252.3L1053 258.8L1056 263.3L1059 270.9L1062 274.6L1065 281.5L1068 285.1L1071 288.9L1074 292.6L1077 296.0L1080 296.3L1083 297.0L1086 298.0L1089 296.7L1092 294.9L1095 292.7L1098 289.4L1101 286.0L1104 281.9L1107 276.9L1110 272.5L1113 265.8L1116 260.2L1119 253.4L1122 247.5L1125 240.7L1128 235.3L1131 229.1L1134 225.5L1137 220.3L1140 215.4L1143 212.5L1146 210.7L1149 206.8L1152 207.1L1155 205.9L1158 206.4L1161 208.4L1164 209.5L1167 212.5L1170 216.4L1173 221.3L1176 224.6L1179 230.9L1182 236.3L1185 242.1L1188 247.7L1191 253.7L1194 259.2L1197 265.4L1200 271.0L1203 277.9L1206 281.7L1209 285.9L1212 289.5L1215 294.2L1218 296.6L1221 297.6L1224 297.5L1227 297.2L1230 296.4L1233 295.0L1236 291.8L1239 289.1L1242 284.7L1245 281.7L1248 276.6L1251 270.2L1254 263.7L1257 259.2L1260 251.6L1263 245.5L1266 238.7L1269 233.7L1272 228.4L1275 223.3L1278 218.1L1281 214.8L1284 210.4L1287 208.4L1290 206.3L1293 206.0L1296 205.0L1299 205.7L1302 207.8L1305 210.0L1308 213.8L1311 217.4L1314 222.3L1317 227.0L1320 232.5L1323 238.6L1326 243.5L1329 249.6L1332 257.2L1335 261.5L1338 268.7L1341 274.1L1344 278.0L1347 284.5L1350 288.8L1353 291.8L1356 294.8L1359 297.0L1362 296.8L1365 298.1L1368 297.6L1371 297.1L1374 295.0L1377 292.2L1380 288.1L1383 284.7L1386 279.4L1389 274.2L1392 267.6L1395 261.2L1398 255.3L1401 249.6L1404 242.9L1407 238.5L1410 232.2L1413 226.9L1416 222.0L1419 217.8L1422 213.6L1425 209.5L1428 208.9L1431 207.3L1434 206.1L1437 206.3L1440 207.5L1443 208.0L1446 212.0L1449 214.2L1452 217.8L1455 222.8L1458 228.9L1461 233.3L1464 240.3L1467 246.9L1470 252.0L1473 257.9L1476 264.2L1479 270.5L1482 276.2L1485 280.9L1488 285.6L1491 288.3L1494 291.7L1497 294.5L1500 297.4L1503 297.4L1506 298.1L1509 296.2L1512 294.8L1515 292.9L1518 290.8L1521 287.1L1524 282.7L1527 276.9L1530 272.0L1533 266.1L1536 260.1L1539 253.2L1542 248.7L1545 241.1L1548 236.9L1551 231.2L1554 223.9L1557 220.1L1560 216.7L1563 213.5L1566 209.6L1569 207.1L1572 205.8L1575 207.0L1578 205.8L1581 207.8L1584 208.9L1587 212.6L1590 217.0L1593 219.4L1596 225.7L1599 230.2L1602 236.7L1605 242.2L1608 247.3L1611 254.9L1614 260.2L1617 265.2L1620 270.9L1623 277.3L1626 282.2L1629 286.2L1632 289.6L1635 293.1L1638 295.3L1641 298.0L1644 296.9L1647 298.4L1650 297.6L1653 294.2L1656 293.4L1659 289.7L1662 286.1L1665 280.2L1668 275.3L1671 269.8L1674 265.3L1677 258.4L1680 251.7L1683 245.7L1686 239.3L1689 232.9L1692 227.5L1695 224.1L1698 218.3L1701 215.7L1704 210.9L1707 208.4L1710 207.2L1713 205.5L1716 205.8L1719 207.7L1722 209.1L1725 211.2L1728 213.9L1731 218.3L1734 222.7L1737 226.8L1740 232.5L1743 236.8L1746 244.3L1749 249.8L1752 256.7L1755 262.6L1758 267.7L1761 272.8L1764 280.0L1767 283.0L1770 287.9L1773 291.1L1776 293.9L1779 296.9L1782 298.6L1785 297.5L1788 297.9L1791 295.9L1794 294.4L1797 291.3L1800 287.2L1803 283.0L1806 278.4L1809 274.7L1812 268.2L1815 261.6L1818 257.0L1821 251.0L1824 243.7L1827 237.0L1830 231.4L1833 225.8L1836 221.4L1839 216.5L1842 213.0L1845 210.0L1848 208.4L1851 207.6L1854 206.6L1857 206.0L1860 207.0L1863 209.0L1866 211.2L1869 214.4L1872 217.8L1875 222.8L1878 229.4L1881 233.1L1884 239.8L1887 246.1L1890 252.8L1893 257.5L1896 263.7L1899 269.5L1902 275.4L1905 280.6L1908 286.2L1911 290.0L1914 293.3L1917 294.0L1920 295.8L1923 298.3L1926 298.8L1929 297.2L1932 295.9L1935 292.3L1938 290.2L1941 287.6L1944 283.0L1947 278.1L1950 273.0L1953 265.7L1956 259.4L1959 253.3L1962 247.9L1965 242.2L1968 236.8L1971 230.7L1974 225.3L1977 220.8L1980 215.9L1983 212.6L1986 208.7L1989 208.3L1992 205.8L1995 206.9L1998 206.7L2001 207.2L2004 208.9L2007 212.0L2010 216.3L2013 220.6L2016 224.1L2019 229.3L2022 235.9L2025 241.9L2028 247.6L2031 253.5L2034 260.4L2037 265.1L2040 271.5L2043 277.3L2046 283.3L2049 287.0L2052 291.2L2055 293.4L2058 295.2L2061 296.7L2064 299.0L2067 298.3L2070 296.4L2073 294.0L2076 292.5L2079 289.6L2082 285.1L2085 280.1L2088 276.0L2091 271.0L2094 263.6L2097 257.1L2100 251.6L2103 245.7L2106 240.2L2109 233.3L2112 229.1L2115 223.8L2118 218.8L2121 214.1L2124 212.5L2127 208.5L2130 207.9L2133 205.6L2136 205.4L2139 207.3L2142 207.8L2145 211.5L2148 213.6L2151 216.7L2154 221.1L2157 226.5L2160 232.4L2163 238.8L2166 243.0L2169 249.7L2172 255.5L2175 263.3L2178 267.4L2181 272.8L2184 278.1L2187 283.6L2190 288.8L2193 292.3L2196 294.8L2199 297.4L2202 298.5L2205 297.6L2208 296.9L2211 297.3L2214 294.8L2217 290.5L2220 288.3L2223 283.5L2226 278.8L2229 273.4L2232 267.4L2235 261.1L2238 255.6L2241 249.6L2244 244.8L2247 237.0L2250 233.1L2253 226.0L2256 221.4L2259 218.1L2262 214.3L2265 210.4L2268 207.3L2271 206.7L2274 205.8L2277 207.1L2280 206.5L2283 208.6L2286 212.4L2289 213.8L2292 218.6L2295 224.0L2298 229.0L2301 232.9L2304 238.7L2307 244.9L2310 252.9L2313 257.6L2316 264.8L2319 271.0L2322 275.2L2325 280.2L2328 286.3L2331 289.5L2334 292.0L2337 295.5L2340 296.4L2343 297.3L2346 296.9L2349 297.8L2352 296.7L2355 293.7L2358 291.4L2361 285.6L2364 281.7L2367 277.3L2370 273.0L2373 267.2L2376 260.0L2379 253.5L2382 247.7L2385 241.7L2388 236.8L2391 229.5L2394 225.6L2397 220.7L2400 216.7L2403 213.1L2406 209.9L2409 207.3L2412 206.0L2415 205.7L2418 207.0L2421 206.7L2424 209.0L2427 213.1L2430 215.5L2433 219.3L2436 223.9L2439 230.3L2442 235.5L2445 242.8L2448 248.7L2451 255.1L2454 259.7L2457 265.3L2460 271.1L2463 277.3L2466 282.7L2469 286.5L2472 289.8L2475 293.3L2478 296.0L2481 297.6L2484 298.5L2487 298.6L2490 297.2L2493 294.2L2496 293.3L2499 288.8L2502 285.4L2505 280.4L2508 276.1L2511 269.4L2514 263.7L2517 257.6L2520 251.2" fill="none" stroke="#f06cc4" stroke-width="2" stroke-linejoin="round"/>
+</g></g>
+<path d="M294 16h12l-6 8z" fill="#f2a63b"/>
+<path d="M0 132l8 6-8 6z" fill="#f5d90a"/><path d="M0 246l8 6-8 6z" fill="#f06cc4"/>
+<path d="M600 96l-8 6 8 6z" fill="#f2a63b"/>
+<path d="M0 338H600" stroke="#26384a"/>
+<g class="rd"><text x="10" y="365" fill="#f5d90a">C1 1V</text><text x="76" y="365" fill="#f06cc4">C2 500mV</text><text x="170" y="365" fill="#d6dde4">100µs/div</text><text x="268" y="365" fill="#4fa8ff">UART 8N1</text><text x="590" y="365" fill="#f2a63b" text-anchor="end">T C1 ↑ 1.5V</text></g>
+</svg>
+      <figcaption><span>Drawn for this page: a serial line on C1 with its bytes decoded, a sine on C2</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" id="screens" aria-labelledby="screens-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">On the screen</p>
+      <h2 id="screens-h">One interface, on the scope and in the browser</h2>
+      <p>The scope's own display, a touch layout where the scope has one, and a web UI the scope serves itself.
+        The workspaces are the same everywhere: SCOPE, BUS, SPECTRUM, MEASURE, COMPARE.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/cml-bus.webp" width="800" height="480" loading="lazy" decoding="async"
+          alt="SDS1102CML+ LCD in the BUS workspace: a 104 MHz SPI flash read triggered on its command bytes 0B 00 10 00, with the decoded reads listed in a hex table">
+        <figcaption><span class="tag hw">ON THE UNIT</span><b>SDS1102CML+, 800 × 480 LCD.</b> A 104 MHz SPI flash read,
+          triggered in the FPGA on its command bytes and decoded under the trace.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/hd-bus.webp" width="1024" height="600" loading="lazy" decoding="async"
+          alt="SDS800X HD touch layout, 1024 × 600: a UART line on C1 decoded as the bytes 48 65 6C 6C 6F, a sine on C2, and touch buttons for the workspaces along the bottom">
+        <figcaption><span class="tag sim">SIMULATED</span><b>SDS800X HD, 1024 × 600 touch layout.</b> A UART decoded
+          in the browser demo. This scope has not run on a real unit yet.</figcaption>
+      </figure>
+      <figure class="shot wide">
+        <img src="img/web-bus.webp" width="1200" height="750" loading="lazy" decoding="async"
+          alt="The web UI in the BUS workspace: the decoder settings, the trace with decoded bytes, the packet table of 286 flash reads and the trigger on bytes">
+        <figcaption><span class="tag hw">ON THE UNIT</span><b>The web UI</b>, served by the SDS1102CML+ on port 8080:
+          the decoder, the packet table of one stopped record (286 flash reads) and the trigger on bytes.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="features" aria-labelledby="features-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">Features</p>
+      <h2 id="features-h">What the firmware does</h2>
+      <p>These are captures from an SDS1102CML+ running the released firmware. The features live in the
+        shared core, so a new scope gets them through its board package.</p>
+    </div>
+    <div class="feats">
+      <article class="feat">
+        <img src="img/cml-bus-visual-midi.webp" width="800" height="480" loading="lazy" decoding="async" alt="A MIDI bus drawn as a piano keyboard, the held note marked">
+        <div><h3>52 serial protocols</h3><p>Each with a hardware trigger, a decoder and AUTO detection. A bus can
+          also be decoded as a gap-free stream, or drawn as what it carries, like MIDI on a piano.</p></div>
+      </article>
+      <article class="feat">
+        <img src="img/cml-bus-eye.webp" width="800" height="480" loading="lazy" decoding="async" alt="Eye diagram of 104 Mbit/s data with eye height, width and jitter readouts">
+        <div><h3>Eye diagram and jitter</h3><p>The eye of a 104 Mbit/s data line, with eye height and width
+          and TIE jitter.</p></div>
+      </article>
+      <article class="feat">
+        <img src="img/cml-spectrum.webp" width="800" height="480" loading="lazy" decoding="async" alt="FFT of a 104 MHz clock with its peak marked and a peak table">
+        <div><h3>Spectrum and spectrogram</h3><p>An FFT with a peak table, and the spectrogram: the spectrum
+          over time.</p></div>
+      </article>
+      <article class="feat">
+        <img src="img/cml-bode.webp" width="800" height="480" loading="lazy" decoding="async" alt="Bode plot: flat gain and a falling phase against a log frequency axis">
+        <div><h3>Bode plots</h3><p>Gain and phase against frequency, from a stepped source on C1 and the
+          circuit's output on C2.</p></div>
+      </article>
+      <article class="feat">
+        <img src="img/cml-sound.webp" width="800" height="480" loading="lazy" decoding="async" alt="SOUND view: a tuner reading A4 at 440.03 Hz, level meters and the waveform">
+        <div><h3>SOUND</h3><p>Level meters, a tuner, envelope and modulation for an audio signal streamed
+          without gaps. The web UI can play it back.</p></div>
+      </article>
+      <article class="feat">
+        <img src="img/cml-compare.webp" width="800" height="480" loading="lazy" decoding="async" alt="COMPARE: a master stacked from 64 captures and the mask test counting live captures">
+        <div><h3>Mask testing</h3><p>Stack a master from many captures, then test live captures against
+          its mask and count the failures.</p></div>
+      </article>
+    </div>
+    <ul class="also">
+      <li>18 automatic measurements with statistics, cursors and math</li>
+      <li>A web UI with the same workspaces as the scope, and a phone remote</li>
+      <li>SCPI over VXI-11 on the network</li>
+      <li>Two install slots with A/B updates; on the SDS1000CML+ nothing is flashed, and a power cycle brings back the factory firmware</li>
+      <li>On the SDS1000CML+: 500 MS/s on both channels into 1 M-sample records, super-resolution, and a gap-free stream buffered in the scope's SRAM</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="built" aria-labelledby="built-h">
+  <div class="wrap arch">
+    <div>
+      <p class="kicker">How it's built</p>
+      <h2 id="built-h">The core is the product. A scope is a board package.</h2>
+      <p><a href="https://github.com/labeth/open-dso-core"><code>open-dso-core</code></a> holds everything that
+        doesn't depend on one instrument: the acquisition engine, instrument state, decoders, measurements
+        and analysis, the display renderer, the web server and client, SCPI, the update supervisor, the
+        design system and the test tools.</p>
+      <p>A scope repository implements the hardware abstraction layer for its board, and holds its
+        specifications, its profile, its FPGA images and its installer. A feature written once in the core
+        reaches every scope. A difference between scopes is data in the scope's profile, not a branch in
+        core code.</p>
+      <p><a href="https://github.com/labeth/open-dso/blob/main/docs/architecture.md">Read the architecture</a></p>
+    </div>
+    <div class="diagram">
+      <svg viewBox="0 0 420 404" role="img" aria-labelledby="arch-t arch-d">
+        <title id="arch-t">How the family is built</title>
+        <desc id="arch-d">open-dso-core, the product, sits on top. Below it the hal.Board interface. Three scope repositories implement it: open-sds1000cml (released), open-sds800xhd (verified in simulation) and open-dho1000 (specifications, planned).</desc>
+        <path class="d-line" d="M67 212V268M210 212V268M353 212V268"/>
+        <rect class="d-core" x="2" y="2" width="416" height="210" rx="12" stroke-width="1.5"/>
+        <text class="d-t" x="18" y="30" font-size="16" font-family="ui-monospace,Menlo,Consolas,monospace">open-dso-core</text>
+        <text class="d-s" x="18" y="49" font-size="12.5">the product, written once</text>
+        <g font-size="12" text-anchor="middle">
+          <rect class="d-chip" x="18" y="62" width="124" height="28" rx="6"/><text class="d-s" x="80" y="80">Engine</text>
+          <rect class="d-chip" x="148" y="62" width="124" height="28" rx="6"/><text class="d-s" x="210" y="80">Instrument state</text>
+          <rect class="d-chip" x="278" y="62" width="124" height="28" rx="6"/><text class="d-s" x="340" y="80">52 decoders</text>
+          <rect class="d-chip" x="18" y="96" width="124" height="28" rx="6"/><text class="d-s" x="80" y="114">Measurements</text>
+          <rect class="d-chip" x="148" y="96" width="124" height="28" rx="6"/><text class="d-s" x="210" y="114">FFT · Bode · eye</text>
+          <rect class="d-chip" x="278" y="96" width="124" height="28" rx="6"/><text class="d-s" x="340" y="114">Renderer + UI</text>
+          <rect class="d-chip" x="18" y="130" width="124" height="28" rx="6"/><text class="d-s" x="80" y="148">Web UI + remote</text>
+          <rect class="d-chip" x="148" y="130" width="124" height="28" rx="6"/><text class="d-s" x="210" y="148">SCPI</text>
+          <rect class="d-chip" x="278" y="130" width="124" height="28" rx="6"/><text class="d-s" x="340" y="148">A/B updates</text>
+          <rect class="d-chip" x="18" y="164" width="124" height="28" rx="6"/><text class="d-s" x="80" y="182">Design system</text>
+          <rect class="d-chip" x="148" y="164" width="124" height="28" rx="6"/><text class="d-s" x="210" y="182">Conformance</text>
+          <rect class="d-chip" x="278" y="164" width="124" height="28" rx="6"/><text class="d-s" x="340" y="182">Sim board + demo</text>
+        </g>
+        <rect class="d-box" x="110" y="226" width="200" height="28" rx="14"/>
+        <text class="d-t" x="210" y="244.5" font-size="12.5" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace">hal.Board</text>
+        <g font-size="12">
+          <rect class="d-box" x="2" y="268" width="130" height="132" rx="10"/>
+          <text class="d-t" x="12" y="290" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11.5">open-sds1000cml</text>
+          <text class="d-s" x="12" y="309">SDS1000CML+</text>
+          <circle cx="16" cy="327" r="4" fill="var(--run)"/><text class="d-s" x="26" y="331">released</text>
+          <text class="d-s" x="12" y="360">board, profile,</text><text class="d-s" x="12" y="376">specs, FPGA</text>
+          <rect class="d-box" x="145" y="268" width="130" height="132" rx="10"/>
+          <text class="d-t" x="155" y="290" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11.5">open-sds800xhd</text>
+          <text class="d-s" x="155" y="309">SDS800X HD</text>
+          <circle cx="159" cy="327" r="4" fill="var(--sim)"/><text class="d-s" x="169" y="331">simulation</text>
+          <text class="d-s" x="155" y="360">board, profile,</text><text class="d-s" x="155" y="376">specs, FPGA</text>
+          <rect class="d-plan" x="288" y="268" width="130" height="132" rx="10"/>
+          <text class="d-t" x="298" y="290" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11.5">open-dho1000</text>
+          <text class="d-s" x="298" y="309">DHO1000</text>
+          <circle cx="302" cy="327" r="4" fill="var(--spec)"/><text class="d-s" x="312" y="331">specifications</text>
+          <text class="d-s" x="298" y="360">private until</text><text class="d-s" x="298" y="376">reviewed</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="scopes" aria-labelledby="scopes-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">The scopes</p>
+      <h2 id="scopes-h">Repositories and where each one stands</h2>
+      <p>A scope is published once its tree and history pass a provenance review. A scope that hasn't run
+        on a real unit says so.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>open-dso-core</h3>
+        <p class="model">The shared product</p>
+        <span class="status core">used by both public scopes</span>
+        <p>Engine, HAL, renderer, web, SCPI, analysis, supervisor, design system and test tools.</p>
+        <div class="links"><a href="https://github.com/labeth/open-dso-core">Repository</a></div>
+      </article>
+      <article class="card">
+        <h3>open-sds1000cml</h3>
+        <p class="model">Siglent SDS1000CML+</p>
+        <span class="status hw">released, v1.2.2, runs on the unit</span>
+        <p>Developed on the SDS1102CML+. Its own FPGA images, 52 protocol triggers, the full feature set
+          above. Its move onto the core runs on a branch and is checked on a bench unit.</p>
+        <div class="links"><a href="https://labeth.github.io/open-sds1000cml/">Demo</a><a href="https://github.com/labeth/open-sds1000cml">Repository</a><a href="https://github.com/labeth/open-sds1000cml/releases">Releases</a></div>
+      </article>
+      <article class="card">
+        <h3>open-sds800xhd</h3>
+        <p class="model">Siglent SDS800X HD</p>
+        <span class="status sim">verified in simulation only</span>
+        <p>SDS802X HD to SDS824X HD. The board layer implements the whole HAL and passes its simulator
+          parity harness. No unit has been on a bench yet.</p>
+        <div class="links"><a href="https://labeth.github.io/open-sds800xhd/">Demo</a><a href="https://github.com/labeth/open-sds800xhd">Repository</a></div>
+      </article>
+      <article class="card">
+        <h3>open-dho1000</h3>
+        <p class="model">Rigol DHO1000</p>
+        <span class="status">specifications</span>
+        <p>Being specified. The repository stays private until it passes the provenance review.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="port" aria-labelledby="port-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">Bring your scope</p>
+      <h2 id="port-h">Port open-dso to your oscilloscope</h2>
+      <p>The firmware is a Linux application written in Go, so your scope needs a processor that runs Linux. You write the board layer: the
+        code that talks to your hardware, a profile that describes it, and specifications in your own words.
+        The core gives you the rest of the product.</p>
+    </div>
+
+    <div class="split">
+      <div class="side">
+        <h3>You write <small>one repository</small></h3>
+        <ul>
+          <li><b>Specifications</b> <span>of the hardware and its interfaces</span></li>
+          <li><b><code>hal.Board</code></b> <span>platform, planner, acquirer, readout, trigger, front end, display, input, storage</span></li>
+          <li><b><code>profile.yaml</code></b> <span>channels, code format, rates, display, inputs, and why any optional part is absent</span></li>
+          <li><b>FPGA images</b> <span>if the board has an FPGA you load</span></li>
+          <li><b>Installer and recovery</b> <span>and a tested way back to the vendor firmware</span></li>
+        </ul>
+      </div>
+      <div class="side core">
+        <h3>The core gives you <small>open-dso-core</small></h3>
+        <ul>
+          <li><b>Acquisition engine</b> <span>and instrument state</span></li>
+          <li><b>52 protocol decoders</b> <span>with AUTO detection</span></li>
+          <li><b>Measurements and analysis</b> <span>FFT, spectrogram, Bode, eye and jitter, masks, SOUND</span></li>
+          <li><b>Display renderer and UI model</b> <span>for a front panel or a touch screen</span></li>
+          <li><b>Web UI, phone remote, SCPI</b> <span>the same API on every scope</span></li>
+          <li><b>Update supervisor</b> <span>A/B slots</span></li>
+          <li><b>Design system and test tools</b> <span>listed below</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="kicker">The path</h3>
+    <ol class="steps">
+      <li><h3>Specifications</h3><p>Describe the hardware and its interfaces in your own words. Hardware facts
+        stay marked UNVERIFIED until they are measured on a unit.</p></li>
+      <li><h3>A simulator before a unit</h3><p>Build a model of the board that the app can run against.
+        Everything after this is developed and tested there first.</p></li>
+      <li><h3>The board, one interface at a time</h3><p>Implement <code>hal.Board</code> against the simulator,
+        write <code>profile.yaml</code>, and run the core's conformance suite.</p></li>
+      <li><h3>The product comes with it</h3><p>Your <code>main</code> builds the board and runs the core. What the
+        board can't do, it reports as absent with a reason, and the UI refuses it with that reason.</p></li>
+      <li><h3>First contact, staged</h3><p>A read-only census of the unit, then reading while the vendor firmware
+        still owns the front end, then writes, then the display. A recovery procedure is proven first.</p></li>
+      <li><h3>Going public</h3><p>After a provenance review of the whole tree and its history. Until a unit
+        confirms it, the scope is marked verified in simulation only.</p></li>
+    </ol>
+    <p><a href="https://github.com/labeth/open-dso/blob/main/docs/adding-a-scope.md">The full guide: adding a scope</a></p>
+
+    <div class="cols2">
+      <div>
+        <h3>It has been done once without a unit</h3>
+        <p>The SDS800X HD was ported entirely in simulation. Its board layer implements the whole HAL, runs the
+          core's conformance suite inside its simulator, and passes its parity harness for every trigger type,
+          readout, the front end and self-calibration. It has not run on a real unit yet.</p>
+        <ul class="facts">
+          <li><span class="num">~15,000</span>lines of Go in the SDS800X HD's own app, its whole board layer</li>
+          <li><span class="num">~89,000</span>lines of Go in the core, plus about 32,000 lines of JavaScript for the web client</li>
+          <li><span class="num">2 files</span>make its browser demo: a 100-line profile and a 116-line demo file with the panel and key table, on the core's simulated board</li>
+        </ul>
+      </div>
+      <div>
+        <h3>The tools you get</h3>
+        <dl class="tools">
+          <dt>HAL conformance suite</dt>
+          <dd><code>hal/conformance</code>: the HAL contract as 23 Go subtests. Run it against your board, its fakes
+            or your simulator. A clause your harness can't exercise is skipped with its reason, never passed.</dd>
+          <dt>Simulated board and browser demo</dt>
+          <dd><code>hal/simboard</code> plus your profile and a demo file gives you a running scope in a browser
+            tab before you have written any hardware code.</dd>
+          <dt>Recorded sessions</dt>
+          <dd><code>session</code> and <code>cmd/dsosessions</code>: one file of operator actions and input signals,
+            replayed on the real scope, the demo or your simulator, with the states compared field by field.</dd>
+          <dt>Design system</dt>
+          <dd><code>design/</code>: the palette, channel colours, layout and the 5×7 LCD font, so your scope looks
+            like the others.</dd>
+          <dt>Provenance rules</dt>
+          <dd><a href="https://github.com/labeth/open-dso/blob/main/docs/contributing.md#provenance">What may go in a public repository</a>, and what may not.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>Provenance in one line:</b> write from your own specifications. Hardware facts are fine, in your own
+        words; vendor code, files, strings and symbol names never go into a public repository.</p>
+    </div>
+
+    <div class="ctas start">
+      <a class="btn primary" href="https://github.com/labeth/open-dso/blob/main/docs/adding-a-scope.md">Start here: adding a scope <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn" href="https://github.com/labeth/open-dso-core">open-dso-core on GitHub</a>
+      <a class="btn" href="https://github.com/labeth/open-dso/issues/new?title=Porting%3A%20">Say which scope you are porting</a>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="help" aria-labelledby="help-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">Get involved</p>
+      <h2 id="help-h">Help with the scopes we have</h2>
+    </div>
+    <div class="help">
+      <article class="card">
+        <h3>Own an SDS800X HD?</h3>
+        <p>The port is complete in simulation and waits for a unit. Read its <a href="https://github.com/labeth/open-sds800xhd/blob/main/SAFETY.txt">SAFETY.txt</a>
+          for the staged first contact, then open an issue.</p>
+        <div class="links"><a href="https://github.com/labeth/open-sds800xhd/issues">open-sds800xhd issues</a></div>
+      </article>
+      <article class="card">
+        <h3>Own an SDS1000CML+?</h3>
+        <p>Install a release, use it on your bench and report what's wrong. A power cycle brings back the
+          factory firmware.</p>
+        <div class="links"><a href="https://github.com/labeth/open-sds1000cml#install-update-and-remove">Install</a><a href="https://github.com/labeth/open-sds1000cml/issues">Issues</a></div>
+      </article>
+      <article class="card">
+        <h3>Contribute to the core</h3>
+        <p>A change to how instruments work in general goes to the core, behind an interface, even if one scope
+          uses it today.</p>
+        <div class="links"><a href="https://github.com/labeth/open-dso/blob/main/docs/contributing.md">Contributing</a><a href="docs.html">Docs</a></div>
+      </article>
+    </div>
+  </div>
+</section>
 </main>
-<script>
-// A minimal rendering of the repository's README.md (its source of text):
-// headings, paragraphs, lists, tables, code, emphasis and links; links into
-// the repository go to its files on GitHub.
-'use strict';
-const repo = 'https://github.com/labeth/open-dso/blob/main/';
-const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const slug = (s) => s.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
-function inline(s) {
-  const codes = [];
-  s = s.replace(/`([^`]+)`/g, (_, c) => { codes.push(c); return `\u0000${codes.length - 1}\u0000`; });
-  s = esc(s);
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => {
-    if (!/^(https?:|#|mailto:)/.test(u)) u = repo + u;
-    return `<a href="${u}">${t}</a>`;
-  });
-  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => `<code>${esc(codes[+i])}</code>`);
-}
-function render(md) {
-  const lines = md.replace(/<!--[\s\S]*?-->/g, '').split('\n');
-  const out = [];
-  for (let i = 0; i < lines.length;) {
-    const l = lines[i];
-    if (/^```/.test(l)) {
-      const code = [];
-      for (i++; i < lines.length && !/^```/.test(lines[i]); i++) code.push(lines[i]);
-      out.push(`<pre><code>${esc(code.join('\n'))}</code></pre>`); i++; continue;
-    }
-    const h = /^(#{1,4}) (.*)/.exec(l);
-    if (h) { out.push(`<h${h[1].length} id="${slug(h[2])}">${inline(h[2])}</h${h[1].length}>`); i++; continue; }
-    if (/^\|/.test(l)) {
-      const rows = [];
-      for (; i < lines.length && /^\|/.test(lines[i]); i++) rows.push(lines[i]);
-      const cells = (r) => r.replace(/^\||\|$/g, '').split('|').map((c) => inline(c.trim()));
-      out.push('<table><tr>' + cells(rows[0]).map((c) => `<th>${c}</th>`).join('') + '</tr>' +
-        rows.slice(2).map((r) => '<tr>' + cells(r).map((c) => `<td>${c}</td>`).join('') + '</tr>').join('') + '</table>');
-      continue;
-    }
-    const li = /^(\s*)(?:[-*]|\d+\.) (.*)/.exec(l);
-    if (li) {
-      const ordered = /^\s*\d+\./.test(l), items = [];
-      for (; i < lines.length && lines[i].trim() !== ''; i++) {
-        const m = /^\s*(?:[-*]|\d+\.) (.*)/.exec(lines[i]);
-        if (m) items.push(m[1]); else items[items.length - 1] += ' ' + lines[i].trim();
-      }
-      const tag = ordered ? 'ol' : 'ul';
-      out.push(`<${tag}>` + items.map((t) => `<li>${inline(t)}</li>`).join('') + `</${tag}>`);
-      continue;
-    }
-    if (l.trim() === '') { i++; continue; }
-    const para = [];
-    for (; i < lines.length && lines[i].trim() !== '' && !/^(#|\||```|\s*[-*] |\s*\d+\. )/.test(lines[i]); i++) para.push(lines[i].trim());
-    out.push(`<p>${inline(para.join(' '))}</p>`);
-  }
-  return out.join('\n');
-}
-fetch('README.md').then((r) => r.text()).then((md) => {
-  document.getElementById('readme').innerHTML = render(md);
-  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
-}).catch(() => { document.getElementById('readme').textContent = 'The README could not be loaded.'; });
-</script>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="d" src="img/lockup-dark.svg" alt="open-dso" width="330" height="64" loading="lazy">
+      <img class="l" src="img/lockup-light.svg" alt="open-dso" width="330" height="64" loading="lazy">
+      <p>MIT licensed. Written from our own specifications.</p>
+      <p>An independent project, not affiliated with any instrument maker. Model names are their owners'.</p>
+    </div>
+    <nav aria-label="Repositories">
+      <a href="https://github.com/labeth/open-dso">open-dso</a>
+      <a href="https://github.com/labeth/open-dso-core">open-dso-core</a>
+      <a href="https://github.com/labeth/open-sds1000cml">open-sds1000cml</a>
+      <a href="https://github.com/labeth/open-sds800xhd">open-sds800xhd</a>
+      <a href="docs.html">Docs</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

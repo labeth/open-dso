@@ -1,8 +1,9 @@
 name: Pages
 
-# The family's front door: site/index.html renders this repository's
-# README.md (the one source of its text) with links to each scope's demo,
-# which each scope repository deploys as its own site.
+# The family's front door: site/index.html is the landing page with links
+# to each scope's demo (each scope repository deploys its own), and
+# site/docs.html renders this repository's README.md, the one source of the
+# family's long text.
 on:
   push:
     branches: [main]
@@ -25,7 +26,8 @@ jobs:
       - name: assemble the site
         run: |
           mkdir -p _site
-          cp site/index.html README.md _site/
+          cp -r site/. _site/
+          cp README.md _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

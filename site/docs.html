@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>open-dso: docs</title>
+<meta name="description" content="How the open-dso family is built: the core, the scope repositories, the family model.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
+<meta property="og:image" content="https://labeth.github.io/open-dso/img/og.png">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#readme">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="open-dso home">
+      <img class="d" src="img/lockup-dark.svg" alt="open-dso" width="330" height="64">
+      <img class="l" src="img/lockup-light.svg" alt="open-dso" width="330" height="64">
+    </a>
+    <nav class="nav" aria-label="Site">
+      <a href="./">Home</a>
+      <a href="./#port">Port a scope</a>
+      <a href="https://github.com/labeth/open-dso">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main class="doc" id="readme">Loading…</main>
+<script>
+// A minimal rendering of the repository's README.md (its source of text):
+// headings, paragraphs, lists, tables, code, emphasis and links; links into
+// the repository go to its files on GitHub.
+'use strict';
+const repo = 'https://github.com/labeth/open-dso/blob/main/';
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const slug = (s) => s.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-');
+function inline(s) {
+  const codes = [];
+  s = s.replace(/`([^`]+)`/g, (_, c) => { codes.push(c); return `\u0000${codes.length - 1}\u0000`; });
+  s = esc(s);
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => {
+    if (!/^(https?:|#|mailto:)/.test(u)) u = repo + u;
+    return `<a href="${u}">${t}</a>`;
+  });
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => `<code>${esc(codes[+i])}</code>`);
+}
+function render(md) {
+  const lines = md.replace(/<!--[\s\S]*?-->/g, '').split('\n').filter((l) => !/^\s*<\/?[a-z]/i.test(l));
+  const out = [];
+  for (let i = 0; i < lines.length;) {
+    const l = lines[i];
+    if (/^```/.test(l)) {
+      const code = [];
+      for (i++; i < lines.length && !/^```/.test(lines[i]); i++) code.push(lines[i]);
+      out.push(`<pre><code>${esc(code.join('\n'))}</code></pre>`); i++; continue;
+    }
+    const h = /^(#{1,4}) (.*)/.exec(l);
+    if (h) { out.push(`<h${h[1].length} id="${slug(h[2])}">${inline(h[2])}</h${h[1].length}>`); i++; continue; }
+    if (/^\|/.test(l)) {
+      const rows = [];
+      for (; i < lines.length && /^\|/.test(lines[i]); i++) rows.push(lines[i]);
+      const cells = (r) => r.replace(/^\||\|$/g, '').split('|').map((c) => inline(c.trim()));
+      out.push('<table><tr>' + cells(rows[0]).map((c) => `<th>${c}</th>`).join('') + '</tr>' +
+        rows.slice(2).map((r) => '<tr>' + cells(r).map((c) => `<td>${c}</td>`).join('') + '</tr>').join('') + '</table>');
+      continue;
+    }
+    const li = /^(\s*)(?:[-*]|\d+\.) (.*)/.exec(l);
+    if (li) {
+      const ordered = /^\s*\d+\./.test(l), items = [];
+      for (; i < lines.length && lines[i].trim() !== ''; i++) {
+        const m = /^\s*(?:[-*]|\d+\.) (.*)/.exec(lines[i]);
+        if (m) items.push(m[1]); else items[items.length - 1] += ' ' + lines[i].trim();
+      }
+      const tag = ordered ? 'ol' : 'ul';
+      out.push(`<${tag}>` + items.map((t) => `<li>${inline(t)}</li>`).join('') + `</${tag}>`);
+      continue;
+    }
+    if (l.trim() === '') { i++; continue; }
+    const para = [];
+    for (; i < lines.length && lines[i].trim() !== '' && !/^(#|\||```|\s*[-*] |\s*\d+\. )/.test(lines[i]); i++) para.push(lines[i].trim());
+    out.push(`<p>${inline(para.join(' '))}</p>`);
+  }
+  return out.join('\n');
+}
+fetch('README.md').then((r) => r.text()).then((md) => {
+  document.getElementById('readme').innerHTML = render(md);
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+}).catch(() => { document.getElementById('readme').textContent = 'The README could not be loaded.'; });
+</script>
+</body>
+</html>
