@@ -3,13 +3,13 @@
 <img src="site/img/lockup-light.svg" alt="open-dso" width="330" height="64">
 </picture></a></p>
 
-# open-dso
+# Open firmware for oscilloscopes
 
 <!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
 <!-- TRLC-LINKS: REQ-FAM-001, REQ-FAM-009 -->
 
-Open firmware for digital storage oscilloscopes, as one family: the same features, the same web
-UI and the same look on every instrument it supports, written from our own specifications.
+One family of open firmware for digital storage oscilloscopes: the same features, the same web UI
+and the same look on every instrument it supports, written from our own specifications.
 
 This repository holds no code. It explains how the family is built and points to the repositories
 that are.
