@@ -49,7 +49,8 @@
       <p class="eyebrow">open-dso</p>
       <h1>Open firmware for digital storage oscilloscopes</h1>
       <p class="lead">One family: the same features, web UI and look on every instrument. The demos below run
-        the real firmware in a browser tab, against a simulated board with a signal generator on its inputs.</p>
+        the firmware's core in a browser tab, against a simulated board with a signal generator on its inputs.
+        They show the product; <a href="#simulation">the full simulator</a> is what tests it.</p>
       <div class="ctas">
         <a class="btn primary" href="https://labeth.github.io/open-sds1000cml/">Try the SDS1000CML+ in your browser <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn" href="https://labeth.github.io/open-sds800xhd/">Try the SDS800X HD in your browser <span class="arr" aria-hidden="true">→</span></a>
@@ -113,7 +114,46 @@
   </div>
 </section>
 
-<section class="band alt" id="features" aria-labelledby="features-h">
+<section class="band alt" id="simulation" aria-labelledby="simulation-h">
+  <div class="wrap">
+    <div class="intro">
+      <p class="kicker">Two kinds of simulation</p>
+      <h2 id="simulation-h">The browser demo shows the product. The full simulator tests the firmware.</h2>
+      <p>Both run without a scope on the desk, but they answer different questions. If you are deciding
+        whether a scope works, it is the second one that counts.</p>
+    </div>
+    <div class="cards pair">
+      <article class="card">
+        <h3>Browser demo</h3>
+        <p class="model">WebAssembly, in a browser tab</p>
+        <span class="status core">for trying the look and feel</span>
+        <p>The core (engine, menus, renderer, web UI, decoders and measurements) is compiled to WebAssembly
+          and runs against a simulated board built from the scope's profile and its panel's key table. A
+          signal generator feeds its inputs.</p>
+        <p>It shows what using the firmware is like. It does not run the scope's own board code, its FPGA
+          or its operating system, and its timing and frame rates are the browser's, not the scope's. We
+          compare it with a real SDS1000CML+ by running the same recorded sessions on both and replaying
+          records captured on the unit.</p>
+        <div class="links"><a href="https://labeth.github.io/open-sds1000cml/">SDS1000CML+ demo</a><a href="https://labeth.github.io/open-sds800xhd/">SDS800X HD demo</a></div>
+      </article>
+      <article class="card">
+        <h3>Full simulator</h3>
+        <p class="model">The real firmware under QEMU</p>
+        <span class="status sim">for end-to-end testing</span>
+        <p>The scope's actual ARM firmware binary runs under QEMU with its Linux, against a model of the
+          scope's hardware: registers, FPGA, DMA and interrupts, the analog front end, the panel and the
+          touchscreen. The open FPGA design can be simulated in the loop with Verilator.</p>
+        <p>This is where installing, updating, power cuts, injected faults, trigger firing, protocol
+          decoding and the web UI are tested end to end. The SDS800X HD is verified this way, since no unit
+          has been on a bench yet. Its hardware model is kept in a private reference workspace for now; the
+          test harness and its results are in the public repository.</p>
+        <div class="links"><a href="https://github.com/labeth/open-sds800xhd/tree/main/sim">Harness and tests</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="features" aria-labelledby="features-h">
   <div class="wrap">
     <div class="intro">
       <p class="kicker">Features</p>
@@ -163,7 +203,7 @@
   </div>
 </section>
 
-<section class="band" id="built" aria-labelledby="built-h">
+<section class="band alt" id="built" aria-labelledby="built-h">
   <div class="wrap arch">
     <div>
       <p class="kicker">How it's built</p>
@@ -224,7 +264,7 @@
   </div>
 </section>
 
-<section class="band alt" id="scopes" aria-labelledby="scopes-h">
+<section class="band" id="scopes" aria-labelledby="scopes-h">
   <div class="wrap">
     <div class="intro">
       <p class="kicker">The scopes</p>
@@ -245,7 +285,7 @@
         <p class="model">Siglent SDS1000CML+</p>
         <span class="status hw">released, v1.2.2, runs on the unit</span>
         <p>Developed on the SDS1102CML+. Its own FPGA images, 52 protocol triggers, the full feature set
-          above. Its move onto the core runs on a branch and is checked on a bench unit.</p>
+          above. Its main branch runs on the core, and each step of the move is checked on a bench unit.</p>
         <div class="links"><a href="https://labeth.github.io/open-sds1000cml/">Demo</a><a href="https://github.com/labeth/open-sds1000cml">Repository</a><a href="https://github.com/labeth/open-sds1000cml/releases">Releases</a></div>
       </article>
       <article class="card">
@@ -266,7 +306,7 @@
   </div>
 </section>
 
-<section class="band" id="port" aria-labelledby="port-h">
+<section class="band alt" id="port" aria-labelledby="port-h">
   <div class="wrap">
     <div class="intro">
       <p class="kicker">Bring your scope</p>
@@ -365,7 +405,7 @@
   </div>
 </section>
 
-<section class="band alt" id="help" aria-labelledby="help-h">
+<section class="band" id="help" aria-labelledby="help-h">
   <div class="wrap">
     <div class="intro">
       <p class="kicker">Get involved</p>

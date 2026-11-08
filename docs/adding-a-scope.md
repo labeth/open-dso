@@ -18,9 +18,15 @@ literals the firmware or a host must use stay verbatim (see [contributing](contr
 
 ## 2. A simulator before a unit
 
-Build a device model the scope application can run against (the SDS800X HD's tier-1 simulator runs
-the application under qemu against a Go model of its registers and buses). Everything in the next
-steps is developed and tested there first.
+Build a device model the scope application can run against: the scope's own firmware binary runs
+under QEMU, with its Linux, against a model of the scope's registers, FPGA, DMA, interrupts, front
+end and panel (the SDS800X HD's tier-1 simulator works this way). Everything in the next steps is
+developed and tested there first: installing and updating, faults, triggers firing, decoding, the
+LCD and the web UI.
+
+This is a different thing from the browser demo. The demo runs only the core, in WebAssembly,
+against a simulated board built from the scope's profile; it shows how the product looks and
+behaves, not whether the scope's board code works. The full simulator is the end-to-end test.
 
 ## 3. The board
 
