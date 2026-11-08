@@ -1,3 +1,8 @@
+<p><a href="https://labeth.github.io/open-dso/"><picture>
+<source media="(prefers-color-scheme: dark)" srcset="site/img/lockup-dark.svg">
+<img src="site/img/lockup-light.svg" alt="open-dso" width="330" height="64">
+</picture></a></p>
+
 # open-dso
 
 <!-- ENGMODEL-OWNER-UNIT: FU-FAM-GOVERNANCE -->
