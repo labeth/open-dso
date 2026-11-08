@@ -45,7 +45,7 @@ roll, protocol and zone triggers, streams) is refused with its reason, as on a s
 | Repository | What it is | Stage | Visibility |
 |---|---|---|---|
 | [open-dso-core](https://github.com/labeth/open-dso-core) | The shared product: engine, HAL, renderer, web, SCPI, analysis, supervisor | used by the SDS1000CML+ and the SDS800X HD | public |
-| [open-sds1000cml](https://github.com/labeth/open-sds1000cml) | Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants) | released (v1.2.x); running on the core on a branch | public |
+| [open-sds1000cml](https://github.com/labeth/open-sds1000cml) | Siglent SDS1000CML+ (SDS1102CML+ and its same-board variants) | released (v1.2.x); main runs on the core | public |
 | [open-sds800xhd](https://github.com/labeth/open-sds800xhd) | Siglent SDS800X HD (SDS802X HD to SDS824X HD) | board layer complete; verified in simulation only, no unit yet | public |
 | open-dho1000 | Rigol DHO1000 | specifications | private |
 
@@ -112,7 +112,7 @@ for t in engdoc engtrace engview; do
   go install github.com/labeth/engineering-model-go/cmd/$t@v0.10.0
 done
 # the composed repositories beside this one (existing checkouts are used as they are;
-# missing ones are cloned: open-dso-core at main, open-sds1000cml at core-split,
+# missing ones are cloned: open-dso-core at main, open-sds1000cml at main,
 # open-sds800xhd at main)
 eval "$(scripts/workspace.sh ..)"
 scripts/generate.sh

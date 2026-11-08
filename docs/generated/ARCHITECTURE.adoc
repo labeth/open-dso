@@ -778,7 +778,7 @@ flowchart TB
   REQC_REQ_FAM_001 -->|applies_to| FU_FU_FAM_GOVERNANCE
   RTC_FU_FAM_GOVERNANCE_RUNTIME["Family model and documentation runtime (inferred)"]:::runtime_element
   FU_FU_FAM_GOVERNANCE -->|runtime evidence| RTC_FU_FAM_GOVERNANCE_RUNTIME
-  CODE_REQ_FAM_001_README_MD["README.md: 4"]:::code_element
+  CODE_REQ_FAM_001_README_MD["README.md: 9"]:::code_element
   RTC_FU_FAM_GOVERNANCE_RUNTIME --->|implemented_by| CODE_REQ_FAM_001_README_MD
   REQC_REQ_FAM_001 -->|code trace| CODE_REQ_FAM_001_README_MD
 classDef system_boundary fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;
@@ -1147,7 +1147,7 @@ flowchart TB
   REQC_REQ_FAM_009 -->|applies_to| FU_FU_FAM_GOVERNANCE
   RTC_FU_FAM_GOVERNANCE_RUNTIME["Family model and documentation runtime (inferred)"]:::runtime_element
   FU_FU_FAM_GOVERNANCE -->|runtime evidence| RTC_FU_FAM_GOVERNANCE_RUNTIME
-  CODE_REQ_FAM_009_README_MD["README.md: 4"]:::code_element
+  CODE_REQ_FAM_009_README_MD["README.md: 9"]:::code_element
   RTC_FU_FAM_GOVERNANCE_RUNTIME --->|implemented_by| CODE_REQ_FAM_009_README_MD
   REQC_REQ_FAM_009 -->|code trace| CODE_REQ_FAM_009_README_MD
   CODE_REQ_FAM_009_ADDING_A_SCOPE_MD["adding-a-scope.md: 4"]:::code_element
@@ -1401,6 +1401,10 @@ This chapter shows the system architecture across hardware and software: hardwar
 |Analysis
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::FU-DSO-BOOTTARGET`
+|Boot target
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-DECODE`
 |Protocol decoders
 |`public`
@@ -1419,6 +1423,10 @@ This chapter shows the system architecture across hardware and software: hardwar
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-FRAMECALC`
 |Frame arithmetic
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::FU-DSO-FSGUARD`
+|Write guard
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`core::FU-DSO-HAL`
@@ -2820,6 +2828,22 @@ This chapter shows the system architecture across hardware and software: hardwar
 |One application composition
 |`public`
 |`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-296`
+|Board write guard
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-297`
+|Next boot target
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-298`
+|Browser demonstration aligned with the scope
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
+|`core::REQ-DSO-299`
+|Touch-first layout on a touch screen without F-keys
+|`public`
+|`github.com/labeth/open-dso-core/model@v0@v0.1.0`
 |`sds1000cml::REQ-SDS-001`
 |Single bus owner
 |`public`
@@ -3644,11 +3668,13 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 *** `core::REQ-DSO-1001` (status not available): The instrument shall reach its board's acquisition, front end, display, panel and supervisor hardware only through the board interface the board-support package implements, which refuses a feature the board lacks.
 *** `core::REQ-DSO-1002` (status not available): The instrument shall read its scope's profile into the board description, choosing the variant by the unit identity.
 *** `core::REQ-DSO-295` (status not available): The instrument shall run every scope's application as its board handed to one core composition, the scope's own parts entering as named options, with no hidden modes.
+*** `core::REQ-DSO-296` (status not available): The instrument shall write files, device nodes and physical register windows only through a write guard that refuses, with the reason, every path, device and window its board's policy protects.
 * *REQ-FAM-003*: The scope repository shall hold only the board-support package of its scope.
 ** link LNK-FAM-003-CORE-BOARD-SUPPORT (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-BOARD-SUPPORT`: Run on any scope whose board-support package implements the board interface, described by its profile, with every feature the board lacks refused rather than faked.
 *** `core::REQ-DSO-1001` (status not available): The instrument shall reach its board's acquisition, front end, display, panel and supervisor hardware only through the board interface the board-support package implements, which refuses a feature the board lacks.
 *** `core::REQ-DSO-1002` (status not available): The instrument shall read its scope's profile into the board description, choosing the variant by the unit identity.
 *** `core::REQ-DSO-295` (status not available): The instrument shall run every scope's application as its board handed to one core composition, the scope's own parts entering as named options, with no hidden modes.
+*** `core::REQ-DSO-296` (status not available): The instrument shall write files, device nodes and physical register windows only through a write guard that refuses, with the reason, every path, device and window its board's policy protects.
 ** link LNK-FAM-003-SDS1000CML-FPGA-IMAGES (unchanged, *CLAIMED*: not yet reviewed) to `sds1000cml::CAP-SDS-FPGA-IMAGES`: Ship FPGA images built reproducibly that meet timing, and configure the fabric only with a valid image whose identity is checked before acquisition starts.
 *** `sds1000cml::REQ-SDS-004` (status not available): The instrument shall verify the loaded image identity before starting its acquisition engine.
 *** `sds1000cml::REQ-SDS-005` (status not available): The instrument shall configure the Cyclone through CS3 selector 7 during controlled bring-up.
@@ -3871,6 +3897,7 @@ Each requirement of this model with the requirement links (`model/req-links.yml`
 *** `core::REQ-DSO-212` (status not available): The instrument shall open a full-screen settings sheet on Menu On/Off or a menu key, with tabs that cover every setting and each row's options written out, pick the highlighted row's option with F1-F5, change tab with S/DIV, move rows with Adjust, close the sheet on the key of the open tab, and run actions only from labelled F-keys.
 *** `core::REQ-DSO-213` (status not available): The instrument shall give Adjust and its push one job named on a tool line in each workspace, move the trigger position with Horizontal Position in every workspace until its push switches it to the workspace's second job named on the tool line (a second push, a workspace or view change or an opened sheet returning it to the trigger position, and the push centring the trigger where there is no second job), and keep the printed jobs of V/DIV, vertical Position, Level, S/DIV and their pushes (Variable, Zero, Zoom), with V/DIV and S/DIV turning the way their printed arcs show.
 *** `core::REQ-DSO-221` (status not available): The instrument shall show only a small live scope drifting over a black LCD after no input has reached the panel for the Screen saver time, draw the LCD black and switch its backlight off after none has for the Screen off time, and let a key or knob on the scope that wakes the screen do nothing else.
+*** `core::REQ-DSO-299` (status not available): The instrument shall lay the same workspaces, views, sheets and rows out for a finger on a scope whose profile has a touch screen and no F-keys - readouts that open their sheets, a touch bar with the workspaces, the workspace's views and the actions, sheet rows with their own touch controls - reach every choice an F-key or a knob job reaches by a tap, and act on the waveform's view alone (box zoom, pinch, two-finger pan, double-tap reset) without changing any setting.
 ** link LNK-FAM-006-CORE-WEB-UI (unchanged, *CLAIMED*: not yet reviewed) to `core::CAP-DSO-WEB-UI`: Operate and observe the instrument from a web browser and a phone on the network, with the same workspaces and settings as the front panel, and export calibrated waveforms.
 *** `core::REQ-DSO-023` (status not available): The instrument shall serve settings and binary frame data through the web endpoint and decode binary frame payloads for browser consumers.
 *** `core::REQ-DSO-069` (status not available): The instrument shall encode supported calibrated waveform export formats.
@@ -5247,18 +5274,18 @@ Inferred source file owned by FU-FAM-GOVERNANCE from docs/status.md.
 |Source |docs/status.md
 |Mentioned In |<<SEC_VIEW_VIEW-FAMILY,Architecture Intent View>>
 |===
-[[REF_CODE_SYMBOL_README_MD_4_README_MD_4]]
+[[REF_CODE_SYMBOL_README_MD_9_README_MD_9]]
 [discrete]
-==== README.md:4
+==== README.md:9
 
-Inferred code symbol owned by FU-FAM-GOVERNANCE from README.md:4.
+Inferred code symbol owned by FU-FAM-GOVERNANCE from README.md:9.
 
 [cols="1,4",options="header"]
 |===
 |Key |Value
 |Kind |Code symbol
 |Owner |FU-FAM-GOVERNANCE
-|Source |README.md:4
+|Source |README.md:9
 |Mentioned In |n/a
 |===
 [[REF_CODE_SYMBOL_ADDING_A_SCOPE_MD_4_DOCS_ADDING_A_SCOPE_MD_4]]

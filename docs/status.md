@@ -9,7 +9,7 @@ Released firmware for the Siglent SDS1102CML+: acquisition up to the hardware's 
 FPGA images, 52 protocol decoders with hardware protocol triggers, eye and jitter analysis, mask
 testing, Bode plots, spectrum and spectrogram, sound analysis, super-resolution stacking, an LCD
 user interface, a web UI and phone remote, SCPI over VXI-11, A/B over-the-air updates and a
-diagnostics stick. Its move onto `open-dso-core` runs on the `core-split` branch and is verified on
+diagnostics stick. Its main branch runs on `open-dso-core` and is verified on
 a bench unit against the release's regression checklist.
 
 ## SDS800X HD (`open-sds800xhd`) — verified in simulation only

@@ -8,7 +8,7 @@
 # A checkout already in DIR (a clone or a git worktree) is used as it is (no
 # fetch, no branch switch), so local work sees the working trees of the
 # sibling repositories. A missing one is cloned at DSO_CORE_REF (default
-# main), SDS1000CML_REF (default core-split, where the SDS1000CML+ model
+# main), SDS1000CML_REF (default main, where the SDS1000CML+ model
 # composes the core) or SDS800XHD_REF (default main).
 #
 # Every composed repository must be public: the clone is anonymous, and a
@@ -36,7 +36,7 @@ checkout() { # name ref
   fi
 }
 checkout open-dso-core "${DSO_CORE_REF:-main}"
-checkout open-sds1000cml "${SDS1000CML_REF:-core-split}"
+checkout open-sds1000cml "${SDS1000CML_REF:-main}"
 checkout open-sds800xhd "${SDS800XHD_REF:-main}"
 
 cat > "$dir/open-dso.work.yml" <<'WORK'
