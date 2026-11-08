@@ -21,6 +21,8 @@ the frequency counter, census, installer and A/B slots. It runs the core's engin
 state and SCPI engine. No unit has been on a bench yet: everything above is verified in simulation
 only, and the arrival plan stages first contact. Its model is held to the product tier and composed
 by the family model (subsystem `SUB-FAM-SDS800XHD`).
+Its parity with the SDS1000CML+ 1.2 regression checklist, row by row with results and the ranked gaps, is
+in [`docs/parity.md`](https://github.com/labeth/open-sds800xhd/blob/main/docs/parity.md) of that repository.
 
 ## DHO1000 (`open-dho1000`) — specifications
 
